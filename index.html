@@ -294,6 +294,93 @@ legend{font-weight:700;font-size:.9rem;margin-bottom:6px;padding:0}
   .nombres{grid-template-columns:1fr}
   .carril{grid-template-columns:80px minmax(0,1fr) 50px}
 }
+
+/* ---------- FIESTA ---------- */
+.pestanas .nuevo.f{background:var(--rosa);color:var(--tecla)}
+.f-portada{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.f-portada h3,.f-sala h3{font-family:var(--display);font-weight:800;font-size:1.4rem;margin:0 0 4px}
+.f-portada p{margin:0 0 12px;color:var(--tenue)}
+.f-portada .panel,.f-sala .panel{display:flex;flex-direction:column;gap:8px}
+.f-portada input[type="text"],.f-sala input[type="text"]{width:100%}
+.f-cab-sala{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;margin:0 0 14px}
+.f-codigo{display:inline-flex;align-items:baseline;gap:10px;background:var(--tecla);border-radius:12px;padding:6px 16px 10px;box-shadow:inset 0 -4px 0 var(--sombra)}
+.f-codigo small{font-family:var(--display);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--tenue);font-size:.8rem}
+.f-codigo b{font-family:var(--mono);font-size:1.6rem;color:var(--menta);letter-spacing:.04em}
+.f-cab-sala .btn{margin-left:0}
+.f-cab-sala .espacio{margin-left:auto}
+.f-grid{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:860px){.f-grid{grid-template-columns:1fr}}
+.f-jug li{display:flex;align-items:center;gap:8px;padding:6px 4px;border-bottom:1px solid var(--fondo)}
+.f-jug li:last-child{border-bottom:0}
+.f-jug .av{display:inline-grid;place-items:center;flex:none;width:30px;height:34px;border-radius:6px;font-family:var(--display);font-weight:800;color:#fff;box-shadow:inset 0 -3px 0 rgb(0 0 0/.25)}
+.f-jug .nom{flex:1;min-width:0;font-weight:700}
+.f-jug .que{color:var(--tenue);font-size:.82rem;white-space:nowrap}
+.tag-lider{font-size:.7rem;background:var(--oro);color:var(--tecla);border-radius:999px;padding:0 8px;font-weight:700}
+.f-cfg{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px 18px}
+.f-cfg .campo{display:flex;flex-direction:column;gap:6px;min-width:0}
+.f-cfg .campo.ancho{grid-column:1/-1}
+.f-cfg label,.f-cfg .etq{font-weight:700;font-size:.9rem;margin:0}
+.f-cfg select{max-width:none;width:100%}
+.f-juegos{display:flex;flex-wrap:wrap;gap:6px}
+.f-juegos button{border:0;border-radius:8px;padding:6px 12px 8px;background:var(--fondo);color:var(--tenue);cursor:pointer;font-weight:700;box-shadow:inset 0 -3px 0 var(--sombra)}
+.f-juegos button[aria-pressed="true"]{background:var(--menta);color:var(--tecla);box-shadow:inset 0 -3px 0 rgb(0 0 0/.25)}
+.f-juegos button:disabled{cursor:default;opacity:.8}
+.f-resumen{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.f-resumen li{display:flex;gap:8px;justify-content:space-between;border-bottom:1px solid var(--fondo);padding:4px 0}
+.f-resumen li span:first-child{color:var(--tenue)}
+.f-empezar{font-family:var(--display);font-size:1.5rem;letter-spacing:.03em;padding:10px 18px 13px;margin-top:6px}
+.f-aviso{background:var(--rosa-suave);color:var(--texto);border-radius:10px;padding:8px 12px;margin:0 0 12px}
+
+/* capa: intro, tabla, podio */
+.f-capa{position:fixed;inset:0;z-index:30;display:flex;flex-direction:column;align-items:center;padding:clamp(18px,4vh,40px) 16px 24px;background:var(--fondo);overflow:auto}
+.f-capa[hidden]{display:none}
+.f-sobre{font-family:var(--display);font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--tenue);font-size:1rem;text-align:center}
+.f-tit{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,6vw,4rem);line-height:1;margin:4px 0 0;text-align:center;text-wrap:balance}
+.f-sub{color:var(--tenue);margin:8px 0 18px;text-align:center;max-width:56ch}
+.f-lista{position:relative;width:min(660px,100%);margin:6px 0 14px}
+.f-fila{position:absolute;left:0;right:0;height:var(--fh);display:grid;grid-template-columns:42px minmax(0,1fr) auto;align-items:center;gap:10px;padding:0 14px 4px;background:var(--tecla);border-radius:11px;box-shadow:inset 0 -4px 0 var(--sombra);transition:transform .8s cubic-bezier(.3,.8,.3,1)}
+.f-fila.yo{outline:3px solid var(--menta);outline-offset:-3px}
+.f-pos{font-family:var(--mono);font-weight:700;font-size:1.25rem;color:var(--tenue);text-align:center}
+.f-nom{min-width:0;display:flex;flex-direction:column;gap:5px}
+.f-nom .linea{display:flex;align-items:center;gap:8px;min-width:0}
+.f-nom .punto{width:12px;height:12px}
+.f-nom .n{font-weight:700;font-size:1.05rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.f-nom .sub{color:var(--tenue);font-size:.78rem;white-space:nowrap}
+.f-barra{height:7px;border-radius:5px;background:var(--fondo);overflow:hidden}
+.f-barra i{display:block;height:100%;width:0;background:var(--menta);border-radius:5px;transition:width 1.1s cubic-bezier(.3,.8,.3,1)}
+.f-fila.bot .f-barra i{background:var(--tenue)}
+.f-pts{text-align:right;font-family:var(--mono);font-weight:700;font-size:1.3rem;font-variant-numeric:tabular-nums;min-width:4.5ch}
+.f-gana{display:block;font-size:.8rem;font-weight:700;color:var(--menta);opacity:0;transform:translateY(4px);transition:opacity .4s,transform .4s}
+.f-gana.ver{opacity:1;transform:none}
+.f-pie{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:6px}
+.f-sig{font-weight:700;text-align:center}
+.f-sig b{color:var(--menta)}
+.f-barra-intro{width:min(420px,80%);height:10px;border-radius:6px;background:var(--mod);overflow:hidden;margin-top:22px}
+.f-barra-intro i{display:block;height:100%;width:0;background:var(--menta);transition:width 4s linear}
+.f-intro-como{max-width:52ch;text-align:center;color:var(--tenue);margin:14px 0 0}
+.f-podio{display:flex;align-items:flex-end;justify-content:center;gap:10px;margin:10px 0 18px;width:min(560px,100%)}
+.f-puesto{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+.f-puesto .nom{font-weight:700;font-size:1.1rem;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.f-puesto .tot{font-family:var(--mono);font-weight:700;color:var(--tenue)}
+.f-puesto .bloque{width:100%;border-radius:12px 12px 0 0;display:grid;place-items:start center;padding-top:10px;font-family:var(--display);font-weight:800;font-size:2.6rem;color:var(--tecla);box-shadow:inset 0 -6px 0 rgb(0 0 0/.22);transform-origin:bottom;animation:subir .8s cubic-bezier(.3,.8,.3,1) both}
+.f-puesto.p1 .bloque{height:170px;background:var(--oro)}
+.f-puesto.p2 .bloque{height:125px;background:var(--tenue);animation-delay:.25s}
+.f-puesto.p3 .bloque{height:90px;background:var(--rosa);animation-delay:.45s}
+@keyframes subir{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.f-confeti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:31}
+.f-confeti i{position:absolute;top:-16px;width:9px;height:14px;border-radius:2px;animation:caer linear forwards}
+@keyframes caer{to{transform:translateY(112vh) rotate(720deg)}}
+.chip-ronda{font-family:var(--display);font-weight:800;background:var(--menta);color:var(--tecla);border-radius:999px;padding:2px 12px 4px;font-size:1.05rem}
+@media (prefers-reduced-motion:reduce){
+  .f-fila,.f-barra i,.f-gana,.f-barra-intro i{transition:none}
+  .f-puesto .bloque{animation:none}
+  .f-confeti{display:none}
+}
+@media (max-width:560px){
+  .pestanas{max-width:100%;gap:3px}
+  .pestanas button{padding:6px 9px 8px;font-size:1rem;gap:4px}
+  .pestanas .nuevo{padding:0 5px;font-size:.58rem}
+}
 </style>
 </head>
 <body>
@@ -308,6 +395,7 @@ legend{font-weight:700;font-size:.9rem;margin-bottom:6px;padding:0}
     <nav class="pestanas" role="tablist" aria-label="Secciones">
       <button role="tab" id="tabPractica" aria-selected="true" type="button">Práctica</button>
       <button role="tab" id="tabArena" aria-selected="false" type="button">Arena <span class="nuevo">multijugador</span></button>
+      <button role="tab" id="tabFiesta" aria-selected="false" type="button">Fiesta <span class="nuevo f">nuevo</span></button>
     </nav>
     <span class="chip-linea" id="chipLinea" hidden><i class="punto-vivo"></i><span id="nLinea">1</span>&nbsp;en línea</span>
     <button class="jugador" id="btnPerfil" type="button" aria-label="Editar tu nombre y tu color">
@@ -434,6 +522,62 @@ legend{font-weight:700;font-size:.9rem;margin-bottom:6px;padding:0}
 
 <!-- ARENA -->
 <div class="app app-arena">
+  <main id="vFiesta" hidden>
+    <div class="arena-cab">
+      <div>
+        <h2>Fiesta</h2>
+        <p>Salas con código para jugar con tu grupo: varios juegos seguidos, tabla de puntos después de cada ronda y podio al final.</p>
+      </div>
+    </div>
+    <section id="fPortada" class="f-portada">
+      <div class="panel">
+        <h3>Tu nombre</h3>
+        <p>Es el que verán los demás en la sala y en la tabla.</p>
+        <label for="fNombre">Nombre</label>
+        <input type="text" id="fNombre" maxlength="24" autocomplete="nickname">
+      </div>
+      <div class="panel">
+        <h3>Crear una sala</h3>
+        <p>Tú eres el líder: eliges los juegos, el tiempo y los bots, y compartes el código o el link.</p>
+        <button class="btn" id="fCrear" type="button">Crear sala</button>
+      </div>
+      <div class="panel">
+        <h3>Entrar con un código</h3>
+        <p>Escribe el código que te pasó el líder.</p>
+        <form id="fFormEntrar" class="fila">
+          <input type="text" id="fCodigo" maxlength="20" autocomplete="off" spellcheck="false" placeholder="ej. tecla-482" aria-label="Código de sala">
+          <button class="btn" type="submit">Entrar</button>
+        </form>
+      </div>
+      <div class="panel">
+        <h3>Practicar solo</h3>
+        <p>Sin invitar a nadie: tú contra bots, con las mismas rondas y la misma tabla.</p>
+        <button class="btn sec" id="fSolo" type="button">Jugar con bots</button>
+      </div>
+      <p class="nota" id="fMsg" role="status" style="grid-column:1/-1"></p>
+    </section>
+    <section id="fSala" class="f-sala" hidden>
+      <div class="f-cab-sala">
+        <span class="f-codigo"><small>Sala</small><b id="fCod">-</b></span>
+        <button class="btn sec chico" id="fCopCod" type="button">Copiar código</button>
+        <button class="btn sec chico" id="fCopLink" type="button">Copiar link</button>
+        <button class="btn sec chico espacio" id="fSalir" type="button">Salir de la sala</button>
+      </div>
+      <div id="fAviso"></div>
+      <div class="f-grid">
+        <section class="panel">
+          <h3>Jugadores <small id="fN"></small></h3>
+          <ul class="lista-gente f-jug" id="fJug"></ul>
+          <p class="nota" id="fEst"></p>
+        </section>
+        <section class="panel">
+          <h3 id="fCfgTit">Configuración</h3>
+          <div id="fCfg"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
   <main id="vArena" hidden>
     <div class="arena-cab">
       <div>
@@ -478,6 +622,7 @@ legend{font-weight:700;font-size:.9rem;margin-bottom:6px;padding:0}
   </main>
 </div>
 
+<div class="f-capa" id="fCapa" hidden></div>
 <div class="a-capa" id="aCapa" hidden><div class="a-panel" id="aPanel" role="dialog" aria-modal="true" aria-label="Partida"></div></div>
 
 <textarea class="captura" id="captura" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Escribe aquí"></textarea>
@@ -544,17 +689,18 @@ const PeerSalas = (() => {
     const oyentes = new Set();
     let peer = null, esAnfitrion = false, conns = new Map(), connHost = null;
     let cerrada = false, conectada = false, reintentos = 0;
-    let timerEnvio = null, timerReparto = null, latido = null, ultimoRx = Date.now();
+    let timerEnvio = null, timerReparto = null, latido = null, ultimoRx = Date.now(), hostLabel = null;
 
     function armar() {
       const todos = [[yo, presLocal, Date.now()]];
       for (const [l, v] of remotos) if (l !== yo) todos.push([l, v.pres, v.t]);
       const nueva = [], nuevoCache = new Map();
       for (const [l, pres, t] of todos) {
-        const json = JSON.stringify(pres), previo = cache.get(l);
+        const esH = !enRed ? l === yo : (esAnfitrion ? l === yo : l === hostLabel);
+        const json = JSON.stringify(pres) + (esH ? '#H' : ''), previo = cache.get(l);
         let p;
         if (previo && previo.json === json && l !== yo) p = previo.peer;
-        else p = congelar({ peer: l, by: null, isMe: l === yo, sameTab: l === yo, kind: 'viewer', guest: false, presence: congelar(JSON.parse(json)), updatedAt: t });
+        else p = congelar({ peer: l, by: null, isMe: l === yo, sameTab: l === yo, host: esH, kind: 'viewer', guest: false, presence: congelar(JSON.parse(JSON.stringify(pres))), updatedAt: t });
         nuevoCache.set(l, { json, peer: p }); nueva.push(p);
       }
       const antes = new Set(lista.map(p => p.peer));
@@ -573,7 +719,7 @@ const PeerSalas = (() => {
       timerReparto = setTimeout(() => {
         timerReparto = null;
         const l = [[yo, presLocal]]; for (const [k, v] of remotos) if (k !== yo) l.push([k, v.pres]);
-        const msg = { t: 'peers', l };
+        const msg = { t: 'peers', h: yo, l };
         for (const c of conns.values()) { try { if (c.open) c.send(msg); } catch (e) {} }
       }, 70);
     }
@@ -600,12 +746,12 @@ const PeerSalas = (() => {
     function alCliente(c) {                 // el cliente recibe la lista del anfitrión
       c.on('data', m => {
         if (!m || m.t !== 'peers' || !Array.isArray(m.l)) return;
-        ultimoRx = Date.now();
+        ultimoRx = Date.now(); if (typeof m.h === 'string') hostLabel = m.h;
         remotos = new Map();
         for (const [l, pres] of m.l) if (typeof l === 'string' && l !== yo && pres && typeof pres === 'object') remotos.set(l, { pres, t: Date.now() });
         avisar();
       });
-      const perdida = () => { if (connHost !== c) return; connHost = null; conectada = false; remotos = new Map(); avisar(); reconectar(); };
+      const perdida = () => { if (connHost !== c) return; connHost = null; conectada = false; hostLabel = null; remotos = new Map(); avisar(); reconectar(); };
       c.on('close', perdida); c.on('error', perdida);
     }
 
@@ -619,7 +765,7 @@ const PeerSalas = (() => {
           if (cambio) avisar();
           repartir();
         } else if (connHost) {
-          if (Date.now() - ultimoRx > 6500) { const c = connHost; try { c.close(); } catch (e) {} connHost = null; conectada = false; remotos = new Map(); avisar(); reconectar(); }
+          if (Date.now() - ultimoRx > 6500) { const c = connHost; try { c.close(); } catch (e) {} connHost = null; conectada = false; hostLabel = null; remotos = new Map(); avisar(); reconectar(); }
           else { try { if (connHost.open) connHost.send({ t: 'pres', from: yo, pres: presLocal }); } catch (e) {} }
         }
       }, 2000);
@@ -701,6 +847,7 @@ const PeerSalas = (() => {
   return {
     /* "lobby": solo local (no hay sala global de gente en línea); join(nombre): sala en red */
     lobby: crearSala('lobby', false),
+    local(nombre) { return crearSala(nombre || 'local', false); },
     peers() { return this.lobby.peers(); },
     presence(p) { return this.lobby.presence(p); },
     onPeers(h, e) { return this.lobby.onPeers(h, e); },
@@ -716,7 +863,6 @@ const PeerSalas = (() => {
     }
   };
 })();
-
 </script>
 <script>
 'use strict';
@@ -1569,6 +1715,7 @@ async function iniciarNube() {
   if (!c || !c.use) {
     Net.room = PeerSalas; Net.lobby(); UI.notaNube(); UI.sala();
     if (!Duelo.sala) { $('#inSala').value = ''; $('#inSala').placeholder = 'ej. emi-caro'; UI.salaTexto('Los dos escriban el MISMO código (por ejemplo emi-caro) y den clic en "Entrar a la sala".'); }
+    if (typeof Fiesta !== 'undefined') Fiesta.alArrancar();
     return;
   }
   const [user, db, room] = await Promise.all([c.use('user'), c.use('db'), c.use('room')].map(p => Promise.resolve(p).catch(() => null)));
@@ -2251,10 +2398,10 @@ const Arena = {
   palabra(r, a, b) { const k = a + '-' + b; if (!this._pal[k]) this._pal[k] = PALABRAS.filter(w => w.length >= a && w.length <= b); return pick(this._pal[k], r); },
   miId() { if (this.modo === 'linea' && this.sala) { const yo = this.peers.find(p => p.sameTab); if (yo) return yo.peer; } return 'yo'; },
   crearPartida() {
-    const sem = (this.modo === 'linea' ? this.codigo : 'solo' + this.soloSemilla) + '#' + this.ronda + '#' + this.id, r = rng(hashStr(sem));
+    const sem = (this.modo === 'linea' ? this.codigo + (this.semExtra || '') : 'solo' + this.soloSemilla) + '#' + this.ronda + '#' + this.id, r = rng(hashStr(sem));
     const P = { sem, r, cuenta: 0, inicio: 0 };
     P.bots = this.botsIds.slice(0, 5).map((b, i) => { const nv = BOT_NIVELES.find(x => x.id === b) || BOT_NIVELES[1]; return { id: 'bot' + i, nivel: nv, tl: lineaBot(nv, hashStr(sem + '#bot' + i)) }; });
-    if (this.mod.tipo === 'texto') P.texto = textoFrases(this.mod.largo, r);
+    if (this.mod.tipo === 'texto') P.texto = this.textoRonda ? this.textoRonda(r) : textoFrases(this.mod.largo, r);
     return P;
   },
   tJuego(now = performance.now()) {
@@ -2586,19 +2733,578 @@ function guardarArena(id, pts, info) {
 
 /* ---------- navegación ---------- */
 function irA(sec) {
+  if (typeof Fiesta !== 'undefined' && Fiesta.activa) {
+    if (sec === 'arena') { Fiesta.bloquearArena(); return; }
+    if (UI.actual === 'arenaJuego' && sec !== 'fiesta') { Fiesta.avisoRonda(); return; }
+  }
   if (UI.actual === 'juego') G.salir();
   if (UI.actual === 'arenaJuego') Arena.salir();
-  UI.vista(sec === 'arena' ? 'arena' : 'inicio'); Net.presencia();
+  UI.vista(sec === 'arena' ? 'arena' : sec === 'fiesta' ? 'fiesta' : 'inicio'); Net.presencia();
 }
 $('#tabPractica').addEventListener('click', () => irA('practica'));
 $('#tabArena').addEventListener('click', () => irA('arena'));
-$('#aSalir').addEventListener('click', () => Arena.salir());
+$('#aSalir').addEventListener('click', () => (Fiesta.activa ? Fiesta.salirDeRonda() : Arena.salir()));
 $('#aEscena').addEventListener('click', enfocar);
 $('#aTexto').addEventListener('click', enfocar);
 $('#aFoco').addEventListener('click', enfocar);
 $('#aSonido').addEventListener('click', () => { Store.perfil.sonido = !Store.perfil.sonido; const t = Store.perfil.sonido ? 'Sonido: sí' : 'Sonido: no'; $('#aSonido').textContent = t; $('#btnSonido').textContent = t; Store.guardarLocal(); enfocar(); });
 
 function arenaLeyenda() { const b = $('#botsLeyenda'); b.replaceChildren(); for (const nv of BOT_NIVELES) { const s = nodo('span'), i = nodo('i'); i.style.background = nv.color; s.append(i, document.createTextNode(`${nv.nombre} · ${nv.ppm} PPM`)); b.append(s); } }
+/* =================== FIESTA: salas personalizadas y modo fiesta =================== */
+for (const id of Object.keys(ARENA)) ARENA[id].durOrig = ARENA[id].dur;
+const dormir = ms => new Promise(r => setTimeout(r, ms));
+
+/* ---------- textos para las rondas (todos sin acentos; usan la semilla r para que todos vean lo mismo) ---------- */
+function textoPalabras(r, min, pal) {
+  let a = 2, b = 12;
+  if (pal === 'cortas') b = 5; else if (pal === 'largas') a = 6;
+  const pool = PALABRAS.filter(w => w.length >= a && w.length <= b);
+  let t = ''; while (t.length < min) t += (t ? ' ' : '') + pick(pool, r);
+  return t;
+}
+function textoNumerosR(r, min) {
+  const n = (a, b) => a + Math.floor(r() * (b - a + 1));
+  const nombres = ['ana', 'luis', 'sofia', 'diego', 'maria', 'jorge', 'paola', 'carlos', 'elena', 'raul'], apellidos = ['lopez', 'garcia', 'perez', 'ramirez', 'torres', 'flores', 'ruiz'];
+  const calles = ['Hidalgo', 'Juarez', 'Morelos', 'Reforma', 'Allende', 'Madero'];
+  const gen = [
+    () => `$${n(100, 9999).toLocaleString('en-US')}.${dos(n(0, 99))}`,
+    () => `Tel. ${pick(['33', '55', '81', '492'], r)} ${n(1000, 9999)} ${n(1000, 9999)}`,
+    () => `${dos(n(1, 28))}/${dos(n(1, 12))}/20${n(24, 30)}`,
+    () => `${pick(nombres, r)}.${pick(apellidos, r)}@correo.mx`,
+    () => `CP ${n(10000, 99999)}`,
+    () => `Folio ${pick('ABCDEFGH'.split(''), r)}-${n(1000, 9999)}`,
+    () => `${dos(n(7, 21))}:${dos(n(0, 59))} h`,
+    () => `${n(5, 70)}% de descuento`,
+    () => `Calle ${pick(calles, r)} #${n(10, 999)}`
+  ];
+  let t = '';
+  while (t.length < min) for (const f of barajar(gen, r)) { t += (t ? ' ' : '') + f(); if (t.length >= min) break; }
+  return t;
+}
+function textoMezcla(r, min, pal) {
+  let t = '';
+  while (t.length < min) { const k = Math.floor(r() * 3); t += (t ? ' ' : '') + (k === 0 ? textoFrases(70, r) : k === 1 ? textoPalabras(r, 60, pal) : textoNumerosR(r, 50)); }
+  return t;
+}
+
+/* ---------- ajustes que la Arena lee cuando hay una sala personalizada ---------- */
+Object.assign(Arena, {
+  cfgSala: null, semExtra: '',
+  restaurarDur() { for (const id of Object.keys(ARENA)) ARENA[id].dur = ARENA[id].durOrig; },
+  textoRonda(r) {
+    const c = this.cfgSala || {}, largo = this.mod.largo;
+    if (c.texto === 'palabras') return textoPalabras(r, largo, c.pal);
+    if (c.texto === 'numeros') return textoNumerosR(r, largo);
+    if (c.texto === 'mezcla') return textoMezcla(r, largo, c.pal);
+    return textoFrases(largo, r);
+  },
+  palabra(r, a, b) {
+    const pl = this.cfgSala && this.cfgSala.pal;
+    if (pl === 'cortas') { b = Math.min(b, 5); a = Math.min(a, b); } else if (pl === 'largas') { a = Math.max(a, 6); b = Math.max(b, a + 2); }
+    const k = a + '-' + b; if (!this._pal[k]) this._pal[k] = PALABRAS.filter(w => w.length >= a && w.length <= b);
+    return pick(this._pal[k], r);
+  }
+});
+{
+  const abrirOriginal = Arena.abrir, resultadoOriginal = Arena.mostrarResultado;
+  Arena.abrir = function (id) { if (!Fiesta.activa) { this.restaurarDur(); this.cfgSala = null; this.semExtra = ''; } return abrirOriginal.call(this, id); };
+  Arena.mostrarResultado = function () { if (Fiesta.activa) return Fiesta.mostrarEspera(); return resultadoOriginal.call(this); };
+}
+{
+  const vistaOriginal = UI.vista;
+  UI.vista = function (v) {
+    vistaOriginal.call(this, v);
+    $('#vFiesta').hidden = v !== 'fiesta';
+    const enF = v === 'fiesta' || (v === 'arenaJuego' && Fiesta.activa), enA = (v === 'arena' || v === 'arenaJuego') && !enF;
+    $('#tabFiesta').setAttribute('aria-selected', String(enF)); $('#tabArena').setAttribute('aria-selected', String(enA)); $('#tabPractica').setAttribute('aria-selected', String(!enF && !enA));
+    if (v === 'fiesta') Fiesta.pintar();
+  };
+}
+
+/* los globos de demostracion no traen vy: sin esto y se vuelve NaN cuando la Arena actualiza el juego */
+{
+  const demoG = ARENA.globos.demo;
+  ARENA.globos.demo = function () { demoG.call(this); for (const g of this.items) if (g.vy === undefined) g.vy = 0; };
+}
+
+/* ---------- Fiesta ---------- */
+const NOMBRES_TEXTO = [['frases', 'Frases'], ['palabras', 'Palabras sueltas'], ['numeros', 'Números y datos'], ['mezcla', 'Mezcla de todo']];
+const NOMBRES_PAL = [['cortas', 'Cortas'], ['normal', 'Normales'], ['largas', 'Largas']];
+const OPC_TIEMPO = [[0, 'Normal (el de cada juego)'], [30, '30 segundos'], [45, '45 segundos'], [60, '1 minuto'], [90, '1 min 30 s'], [120, '2 minutos'], [180, '3 minutos']];
+const OPC_RONDAS = [1, 2, 3, 4, 5, 6, 8, 10];
+const OPC_PAUSA = [5, 8, 12, 15];
+
+const Fiesta = {
+  activa: false, local: false, entrando: false, sala: null, codigo: '', peers: [],
+  cfg: null, cv: 0, est: null, vUlt: 0, keyProc: null, ultTabla: null, tot: {},
+  eraLider: false, t0Ronda: 0, tSig: 0, cerrando: false, tick: 0, tIntro: 0, tAnim: [], animId: 0, tCuenta: 0,
+  sig: { jug: '', cfg: '' }, confirmSalir: false, tConf: 0, espectando: 0,
+
+  cfgBase() { return { modo: 'fiesta', juegos: ARENA_ORDEN.slice(), orden: 'azar', juego: ARENA_ORDEN[0], rondas: 5, tiempo: 0, texto: 'frases', pal: 'normal', bots: [], pausa: 8 }; },
+  limpiarCfg(c) {
+    const b = this.cfgBase(); if (!c || typeof c !== 'object') return b;
+    return {
+      modo: c.modo === 'solo' ? 'solo' : 'fiesta',
+      juegos: Array.isArray(c.juegos) ? c.juegos.filter(j => ARENA[j]).slice(0, 8) : b.juegos,
+      orden: c.orden === 'orden' ? 'orden' : 'azar',
+      juego: ARENA[c.juego] ? c.juego : b.juego,
+      rondas: clamp(Math.round(num(c.rondas)) || 5, 1, 12),
+      tiempo: OPC_TIEMPO.some(o => o[0] === c.tiempo) ? c.tiempo : 0,
+      texto: NOMBRES_TEXTO.some(o => o[0] === c.texto) ? c.texto : 'frases',
+      pal: NOMBRES_PAL.some(o => o[0] === c.pal) ? c.pal : 'normal',
+      bots: Array.isArray(c.bots) ? c.bots.filter(x => BOT_NIVELES.some(n => n.id === x)).slice(0, 5) : [],
+      pausa: OPC_PAUSA.includes(c.pausa) ? c.pausa : 8
+    };
+  },
+  limpiarEst(e) {
+    if (!e || typeof e !== 'object' || !['espera', 'ronda', 'tabla', 'final'].includes(e.fase)) return null;
+    const o = { id: txt(e.id, 12), fase: e.fase, n: clamp(Math.round(num(e.n)), 0, 20), de: clamp(Math.round(num(e.de)), 0, 20), v: Math.round(num(e.v)), lista: Array.isArray(e.lista) ? e.lista.filter(j => ARENA[j]).slice(0, 20) : [] };
+    if (Array.isArray(e.tabla)) o.tabla = e.tabla.slice(0, 14).map(r => Array.isArray(r) ? [txt(String(r[0]), 20), txt(String(r[1]), 14), txt(String(r[2]), 12), r[3] ? 1 : 0, Math.round(num(r[4])), Math.round(num(r[5])), txt(String(r[6]), 16), Math.round(num(r[7]))] : null).filter(Boolean);
+    if ((o.fase === 'tabla' || o.fase === 'final') && !(o.tabla && o.tabla.length)) return null;
+    if (o.fase === 'ronda' && !o.lista[o.n - 1]) return null;
+    return o;
+  },
+
+  /* --- quién es quién --- */
+  gente() { return this.peers.filter(p => p.kind !== 'agent'); },
+  lider() { return this.peers.find(p => p.host && p.kind !== 'agent') || null; },
+  soyLider() { const l = this.lider(); return !!(l && l.sameTab); },
+  miLabel() { const y = this.peers.find(p => p.sameTab); return y ? y.peer : 'yo'; },
+  pub(parche) { if (this.sala) this.sala.presence(parche).catch(() => {}); },
+  pubEst(e) { this.vUlt++; e.v = this.vUlt; this.pub({ fiesta: e }); },
+  pubCfg() { this.cv++; this.pub({ cfg: this.cfg, cv: this.cv }); },
+  msg(t) { const m = $('#fMsg'); if (m) m.textContent = t || ''; },
+
+  guardarNombre() {
+    const n = txt($('#fNombre').value).trim();
+    if (!n) { this.msg('Escribe tu nombre primero: así te verán los demás.'); $('#fNombre').focus(); return false; }
+    if (n !== Store.perfil.alias) { Store.perfil.alias = n; Store.guardarLocal(); UI.jugador(); Net.presencia(); }
+    return true;
+  },
+
+  /* --- entrar / salir --- */
+  async crear() {
+    if (!this.guardarNombre() || this.entrando) return;
+    const pals = ['tecla', 'ritmo', 'carro', 'fiesta', 'ppm', 'letra', 'dedo', 'teclazo'];
+    for (let i = 0; i < 3; i++) {
+      const cod = pick(pals) + '-' + (100 + Math.floor(Math.random() * 900));
+      await this.entrar(cod, false, true);
+      if (!this.sala) return;
+      await dormir(1100);
+      if (this.soyLider()) return;
+      await this.salirSala(true);
+    }
+    this.msg('No se pudo crear la sala. Intenta otra vez.');
+  },
+  async entrar(codigo, local, silencioso) {
+    if (!this.guardarNombre()) return;
+    if (this.entrando) return;
+    if (!Net.room) { this.msg('La sala en línea no está disponible ahora.'); return; }
+    const cod = local ? 'solo' : Duelo.normalizar(codigo);
+    if (!cod) { this.msg('Escribe un código con letras o números.'); return; }
+    this.entrando = true; this.msg(local ? '' : 'Entrando a la sala…');
+    try {
+      await this.salirSala(true);
+      if (Arena.sala) { try { await Arena.sala.leave(); } catch (e) {} Arena.sala = null; }
+      let sala;
+      if (local) { if (!Net.room.local) throw { code: 'local' }; sala = Net.room.local('fiesta-solo'); } else sala = await Net.room.join('fiesta-' + cod);
+      this.sala = sala; this.local = !!local; this.codigo = cod; this.activa = true; this.peers = [];
+      this.cfg = this.cfgBase(); if (local) this.cfg.bots = ['conejo', 'zorro']; this.cv = 0; this.est = null; this.vUlt = 0; this.keyProc = null; this.ultTabla = null; this.tot = {}; this.eraLider = false; this.espectando = 0; this.cerrando = false;
+      this.sig = { jug: '', cfg: '' };
+      Arena.sala = sala; Arena.codigo = cod; Arena.modo = 'linea'; Arena.peers = []; Arena.ronda = 0; Arena.semExtra = '';
+      const p = Store.perfil;
+      await sala.presence({ alias: txt(p.alias, 24) || 'Sin nombre', color: p.color, juego: '', ronda: 0, estado: 'nada', chars: 0, puntos: 0, ppm: 0, fin: 0 });
+      sala.onPeers(ch => { this.peers = ch.peers; this.alCambiar(); }, () => { if (this.sala === sala) { this.salirSala(true).then(() => { UI.vista('fiesta'); this.pintar(); this.msg('Se perdió la conexión con la sala. Vuelve a entrar.'); }); } });
+      this.tick = setInterval(() => this.lideTick(), 400);
+      if (!local) { try { history.replaceState(null, '', '?sala=' + encodeURIComponent(cod)); } catch (e) {} }
+      this.msg(''); this.pintar();
+    } catch (e) {
+      this.sala = null; this.activa = false;
+      this.msg(e && e.code === 'limit_reached' ? 'Hay demasiadas salas abiertas ahora. Intenta en un momento.' : local ? 'No se pudo abrir la práctica solo.' : 'No se pudo entrar a la sala. Revisa tu conexión e intenta otra vez.');
+      Arena.modo = 'bots';
+    } finally { this.entrando = false; }
+  },
+  async salirSala(silencio) {
+    clearInterval(this.tick); this.tick = 0; clearTimeout(this.tIntro); this.limpiarAnim();
+    const s = this.sala; this.sala = null; this.activa = false; this.peers = [];
+    if (s) { try { await s.leave(); } catch (e) {} }
+    Arena.restaurarDur(); Arena.cfgSala = null; Arena.semExtra = '';
+    if (Arena.sala === s) { Arena.sala = null; Arena.peers = []; Arena.codigo = ''; Arena.ronda = 0; }
+    Arena.modo = 'bots';
+    if (UI.actual === 'arenaJuego') { cancelAnimationFrame(Arena.raf); Arena.estado = 'nada'; }
+    this.cerrarCapa(); $('#aCapa').hidden = true; $('#aPanel').style.textAlign = ''; $('#aSalir').textContent = '← Arena';
+    this.est = null; this.keyProc = null; this.ultTabla = null; this.tot = {}; this.eraLider = false;
+    try { if (location.search) history.replaceState(null, '', location.pathname); } catch (e) {}
+    if (!silencio) { UI.vista('fiesta'); this.pintar(); }
+  },
+  salirDeRonda() {
+    const b = $('#aSalir');
+    if (this.confirmSalir) { this.confirmSalir = false; clearTimeout(this.tConf); this.salirSala(false); return; }
+    this.confirmSalir = true; b.textContent = '¿Seguro? Otro clic para salir';
+    this.tConf = setTimeout(() => { this.confirmSalir = false; b.textContent = '← Salir de la fiesta'; }, 3000);
+  },
+
+  /* --- cuando cambia la gente de la sala --- */
+  alCambiar() {
+    if (!this.sala) return;
+    Arena.peers = this.peers;
+    const lid = this.lider(), soy = !!(lid && lid.sameTab), pr = lid && lid.presence;
+    if (lid && !soy && pr && pr.cfg && num(pr.cv) !== this.cv) { this.cfg = this.limpiarCfg(pr.cfg); this.cv = num(pr.cv); }
+    if (pr && pr.fiesta) { const e = this.limpiarEst(pr.fiesta); if (e) this.procesar(e); }
+    if (soy && !this.eraLider) this.asumirLiderazgo();
+    if (!soy && this.eraLider) { this.eraLider = false; this.pub({ cfg: null, cv: null, fiesta: null }); }
+    this.pintar();
+  },
+  asumirLiderazgo() {
+    this.eraLider = true;
+    if (!this.cfg) this.cfg = this.cfgBase();
+    this.pubCfg();
+    const base = this.est ? this.est : { id: txt(Math.random().toString(36).slice(2, 8)), fase: 'espera', n: 0, de: 0, lista: [] };
+    this.tot = {}; if (this.ultTabla) for (const r of this.ultTabla) this.tot[r[0]] = r[5];
+    const e = Object.assign({}, base); delete e.v;
+    if (e.fase === 'ronda') { this.t0Ronda = Date.now() - 8000; this.cerrando = false; }
+    if (e.fase === 'tabla') this.tSig = Date.now() + this.cfg.pausa * 1000 + 2000;
+    this.pubEst(e);
+  },
+
+  /* --- estados de la partida --- */
+  procesar(e) {
+    this.vUlt = Math.max(this.vUlt, e.v);
+    const key = e.id + '|' + e.fase + '|' + e.n, primera = this.keyProc === null;
+    this.est = e;
+    if (key === this.keyProc) return;
+    this.keyProc = key;
+    if (e.fase === 'tabla' || e.fase === 'final') this.ultTabla = e.tabla;
+    if (e.fase === 'ronda' && e.n === 1) this.ultTabla = null;
+    if (e.fase === 'ronda') {
+      if (primera) { this.espectando = e.n; return; }
+      this.espectando = 0; this.arrancarRonda(e);
+    } else if (e.fase === 'tabla') {
+      if (this.espectando) this.espectando = 0;
+      if (UI.actual === 'arenaJuego' || UI.actual === 'fiesta') this.mostrarTabla(e, false);
+    } else if (e.fase === 'final') {
+      this.espectando = 0; this.mostrarPodio(e);
+    } else {
+      this.espectando = 0; this.volverALaSala();
+    }
+  },
+  volverALaSala() {
+    clearTimeout(this.tIntro); this.limpiarAnim(); this.cerrarCapa();
+    if (UI.actual === 'arenaJuego') { cancelAnimationFrame(Arena.raf); Arena.estado = 'nada'; Arena.reportar(true); UI.vista('fiesta'); }
+    $('#aCapa').hidden = true; $('#aPanel').style.textAlign = ''; $('#aSalir').textContent = '← Arena';
+    Arena.restaurarDur(); this.pintar();
+  },
+  armarLista(c) {
+    if (c.modo === 'solo') return Array(c.rondas).fill(c.juego);
+    const pool = ARENA_ORDEN.filter(j => c.juegos.includes(j)); if (!pool.length) pool.push(...ARENA_ORDEN);
+    const lista = [];
+    if (c.orden === 'orden') { for (let i = 0; i < c.rondas; i++) lista.push(pool[i % pool.length]); return lista; }
+    let mazo = [];
+    while (lista.length < c.rondas) {
+      if (!mazo.length) { mazo = barajar(pool); if (pool.length > 1 && mazo[0] === lista[lista.length - 1]) mazo.push(mazo.shift()); }
+      lista.push(mazo.shift());
+    }
+    return lista;
+  },
+  iniciar() {
+    if (!this.soyLider() || !this.est || this.est.fase !== 'espera') return;
+    const c = this.cfg, lista = this.armarLista(c);
+    this.tot = {};
+    this.pubCfg();
+    this.lanzar({ id: Math.random().toString(36).slice(2, 8), fase: 'ronda', n: 1, de: lista.length, lista });
+  },
+  lanzar(e) { this.t0Ronda = Date.now(); this.cerrando = false; this.pubEst(e); },
+  lanzarRonda(n) { const e = this.est; this.lanzar({ id: e.id, fase: 'ronda', n, de: e.de, lista: e.lista }); },
+
+  arrancarRonda(e) {
+    const id = e.lista[e.n - 1], mod = ARENA[id], c = this.cfg || this.cfgBase();
+    if (UI.actual === 'juego') G.salir();
+    clearTimeout(this.tIntro); this.limpiarAnim();
+    Arena.restaurarDur(); if (c.tiempo) mod.dur = c.tiempo;
+    Arena.cfgSala = { texto: c.texto, pal: c.pal }; Arena.semExtra = '~' + e.id;
+    Arena.botsIds = c.bots.slice(0, 5);
+    Arena.id = id; Arena.mod = mod; Arena.ronda = e.n; Arena.modo = 'linea'; Arena.sala = this.sala; Arena.codigo = this.codigo;
+    UI.vista('arenaJuego'); $('#aCapa').hidden = true; $('#aPanel').style.textAlign = '';
+    const tit = $('#aTitulo'); tit.replaceChildren(nodo('span', 'chip-ronda', `${e.n}/${e.de}`), document.createTextNode(' ' + mod.nombre));
+    $('#aInstr').textContent = mod.como; $('#aAyuda').textContent = mod.tipo === 'blancos' ? 'Borrar corrige · Esc cambia de blanco' : 'Si fallas, teclea la letra correcta para seguir';
+    $('#aSalir').textContent = '← Salir de la fiesta'; this.confirmSalir = false;
+    Arena.prepararEscena(); ajustarArena(); Arena.loop(); Arena.reportar(true);
+    this.mostrarIntro(e, mod);
+    this.tIntro = setTimeout(() => {
+      if (!this.sala || !this.est || this.est.fase !== 'ronda' || this.est.n !== e.n) return;
+      this.cerrarCapa(); Arena.comenzar(false);
+    }, 4000);
+  },
+
+  /* --- el líder revisa si ya terminó la ronda y reparte los turnos --- */
+  lideTick() {
+    if (!this.sala || !this.est || !this.soyLider()) return;
+    const e = this.est, ahora = Date.now();
+    if (e.fase === 'ronda') {
+      const trans = ahora - this.t0Ronda;
+      if (this.cerrando || trans < 7500) return;
+      const id = e.lista[e.n - 1], mod = ARENA[id]; if (!mod) return;
+      const part = this.gente().filter(p => p.presence && num(p.presence.ronda) === e.n && p.presence.juego === id);
+      const todos = part.length > 0 && part.every(p => p.presence.estado === 'fin');
+      const limite = trans > 4000 + 3000 + mod.dur * 1000 + 9000;
+      if (todos || limite) {
+        this.cerrando = true;
+        setTimeout(() => { if (this.soyLider() && this.est && this.est.fase === 'ronda' && this.est.n === e.n) this.cerrarRonda(); else this.cerrando = false; }, todos ? 1200 : 0);
+      }
+    } else if (e.fase === 'tabla' && ahora >= this.tSig) {
+      if (e.n < e.de) this.lanzarRonda(e.n + 1);
+      else this.pubEst({ id: e.id, fase: 'final', n: e.n, de: e.de, lista: e.lista, tabla: e.tabla });
+    }
+  },
+  cerrarRonda() {
+    const e = this.est, A = Arena;
+    A.parts = A.participantes(A.mod.dur * 1000); A.lugaresMap = A.lugares();
+    const orden = A.orden(), n = orden.length;
+    const filas = orden.map((p, i) => {
+      const g = Math.round(1000 * (n - i) / n), antes = this.tot[p.id] || 0; this.tot[p.id] = antes + g;
+      const pe = p.bot ? null : this.peers.find(x => x.peer === p.id), colorId = p.bot ? p.color : (pe && pe.presence && pe.presence.color) || Store.perfil.color;
+      return [p.id, txt(p.nombre, 14), txt(String(colorId), 12), p.bot ? 1 : 0, g, antes + g, txt(String(A.valor(p)), 16), i + 1];
+    });
+    filas.sort((a, b) => b[5] - a[5] || a[7] - b[7]);
+    this.tSig = Date.now() + 3600 + this.cfg.pausa * 1000;
+    this.pubEst({ id: e.id, fase: 'tabla', n: e.n, de: e.de, lista: e.lista, tabla: filas });
+  },
+  volverAEspera() { if (!this.soyLider()) return; this.tot = {}; this.ultTabla = null; this.pubEst({ id: Math.random().toString(36).slice(2, 8), fase: 'espera', n: 0, de: 0, lista: [] }); },
+
+  /* --- pantallas encima del juego --- */
+  cerrarCapa() { const c = $('#fCapa'); c.hidden = true; c.replaceChildren(); },
+  limpiarAnim() { for (const t of this.tAnim) clearTimeout(t); this.tAnim = []; cancelAnimationFrame(this.animId); clearInterval(this.tCuenta); },
+  mostrarIntro(e, mod) {
+    const c = $('#fCapa'); c.replaceChildren(); c.hidden = false; cap.blur();
+    const barra = nodo('div', 'f-barra-intro'), i = nodo('i'); barra.append(i);
+    c.append(nodo('div', 'f-sobre', `Ronda ${e.n} de ${e.de}`), nodo('h2', 'f-tit', mod.nombre), nodo('p', 'f-intro-como', mod.como), barra, nodo('p', 'f-sub', 'Prepárate…'));
+    requestAnimationFrame(() => requestAnimationFrame(() => { i.style.width = '100%'; }));
+  },
+  mostrarEspera() {
+    const capa = $('#aCapa'), pnl = $('#aPanel'), r = Arena.resultado; capa.hidden = false; pnl.replaceChildren(); pnl.style.textAlign = 'center';
+    pnl.append(nodo('h3', '', '¡Terminaste!'));
+    const pts = nodo('p', 'a-res-pts', String(r.pts)); pts.append(nodo('small', '', ' puntos')); pnl.append(pts);
+    pnl.append(nodo('p', '', `${Math.round(r.ppm)} PPM · ${(r.prec * 100).toFixed(1)}% de precisión`));
+    const ol = nodo('ol', 'ranking'); ol.id = 'aRank'; pnl.append(ol); Arena.rankingRes();
+    pnl.append(nodo('p', 'nota', 'Esperando a los demás… la tabla sale en cuanto todos terminen.'));
+  },
+  visibles(rows) {
+    const yo = this.miLabel();
+    let v = rows.map((r, i) => ({ r, i }));
+    if (v.length > 10) { const mio = v.find(o => o.r[0] === yo); v = v.slice(0, 9); if (mio && !v.includes(mio)) v.push(mio); }
+    return v;
+  },
+  colorFila(r) { return r[2][0] === '#' ? r[2] : colorDe(r[2]); },
+  mostrarTabla(e, esFinal) {
+    const rows = e.tabla; this.limpiarAnim(); clearTimeout(this.tIntro);
+    $('#aCapa').hidden = true; cap.blur();
+    const capa = $('#fCapa'); capa.replaceChildren(); capa.hidden = false;
+    const calma = matchMedia('(prefers-reduced-motion: reduce)').matches, yo = this.miLabel(), fh = 56, paso = fh + 8;
+    const vis = this.visibles(rows).map((o, k) => Object.assign(o, { k }));
+    const previo = vis.slice().sort((a, b) => (b.r[5] - b.r[4]) - (a.r[5] - a.r[4]) || a.i - b.i);
+    const idxPrev = new Map(previo.map((o, i) => [o.r[0], i])), maxTot = Math.max(1, ...vis.map(o => o.r[5]));
+    const mod = ARENA[e.lista[e.n - 1]];
+    capa.append(nodo('div', 'f-sobre', `Ronda ${e.n} de ${e.de}`), nodo('h2', 'f-tit', 'Clasificación'), nodo('p', 'f-sub', mod ? mod.nombre : ''));
+    const lista = nodo('div', 'f-lista'); lista.style.height = (vis.length * paso - 8) + 'px'; lista.style.setProperty('--fh', fh + 'px'); capa.append(lista);
+    const els = vis.map(o => {
+      const r = o.r, f = nodo('div', 'f-fila' + (r[0] === yo ? ' yo' : '') + (r[3] ? ' bot' : ''));
+      const pos = nodo('div', 'f-pos', String(idxPrev.get(r[0]) + 1));
+      const nom = nodo('div', 'f-nom'), linea = nodo('div', 'linea'), pu = nodo('span', 'punto'); pu.style.background = this.colorFila(r);
+      linea.append(pu, nodo('span', 'n', r[1] + (r[0] === yo ? ' (tú)' : '')), ...(r[3] ? [nodo('span', 'tag-bot', 'bot')] : []));
+      const barra = nodo('div', 'f-barra'), bi = nodo('i'); barra.append(bi);
+      nom.append(linea, nodo('div', 'sub', `${r[7]}.º esta ronda · ${r[6]}`), barra);
+      const pts = nodo('div', 'f-pts'), num0 = nodo('span', '', String(r[5] - r[4])), gana = nodo('span', 'f-gana', '+' + r[4]); pts.append(num0, gana);
+      f.append(pos, nom, pts); f.style.transform = `translateY(${idxPrev.get(r[0]) * paso}px)`; lista.append(f);
+      bi.style.width = Math.round(100 * (r[5] - r[4]) / maxTot) + '%';
+      return { o, f, pos, bi, num0, gana };
+    });
+    const pie = nodo('div', 'f-pie'), sig = nodo('div', 'f-sig'); pie.append(sig); capa.append(pie);
+    const siguiente = e.n < e.de ? ARENA[e.lista[e.n]] : null;
+    const final = () => {
+      for (const x of els) { x.gana.classList.add('ver'); x.num0.textContent = String(x.o.r[5]); x.bi.style.width = Math.round(100 * x.o.r[5] / maxTot) + '%'; x.pos.textContent = String(x.o.k + 1); x.f.style.transform = `translateY(${x.o.k * paso}px)`; }
+    };
+    let seg = this.cfg ? this.cfg.pausa : 8;
+    const textoSig = () => { sig.replaceChildren(document.createTextNode(siguiente ? 'Siguiente: ' : 'Resultado final en '), ...(siguiente ? [nodo('b', '', siguiente.nombre), document.createTextNode(` · ${seg} s`)] : [nodo('b', '', `${seg} s`)])); };
+    const arrancarCuenta = () => {
+      textoSig();
+      if (this.soyLider()) { const b = nodo('button', 'btn sec chico', 'Saltar espera'); b.type = 'button'; b.addEventListener('click', () => { this.tSig = 0; b.disabled = true; }); pie.append(b); }
+      this.tCuenta = setInterval(() => { seg = Math.max(0, seg - 1); textoSig(); }, 1000);
+    };
+    if (calma) { final(); arrancarCuenta(); return; }
+    const T = (ms, fn) => this.tAnim.push(setTimeout(fn, ms));
+    T(800, () => {
+      SFX.moneda();
+      for (const x of els) x.gana.classList.add('ver');
+      for (const x of els) x.bi.style.width = Math.round(100 * x.o.r[5] / maxTot) + '%';
+      const t0 = performance.now(), dur = 1300;
+      const paso1 = now => { const k = clamp((now - t0) / dur), ez = 1 - Math.pow(1 - k, 3); for (const x of els) x.num0.textContent = String(Math.round((x.o.r[5] - x.o.r[4]) + x.o.r[4] * ez)); if (k < 1) this.animId = requestAnimationFrame(paso1); };
+      this.animId = requestAnimationFrame(paso1);
+    });
+    T(2700, () => { SFX.pop(); for (const x of els) { x.pos.textContent = String(x.o.k + 1); x.f.style.transform = `translateY(${x.o.k * paso}px)`; } });
+    T(3600, arrancarCuenta);
+  },
+  mostrarPodio(e) {
+    this.limpiarAnim(); clearTimeout(this.tIntro); $('#aCapa').hidden = true; cap.blur();
+    const rows = e.tabla, yo = this.miLabel(), capa = $('#fCapa'); capa.replaceChildren(); capa.hidden = false;
+    capa.append(nodo('div', 'f-sobre', `${e.de} ${e.de === 1 ? 'ronda' : 'rondas'} jugadas`), nodo('h2', 'f-tit', '¡Podio!'));
+    const top = rows.slice(0, 3), podio = nodo('div', 'f-podio');
+    for (const k of [1, 0, 2]) {
+      const r = top[k]; if (!r) continue;
+      const p = nodo('div', 'f-puesto p' + (k + 1)), pu = nodo('div', 'nom', r[1] + (r[0] === yo ? ' (tú)' : '')); pu.style.color = this.colorFila(r);
+      p.append(pu, nodo('div', 'tot', r[5] + ' pts'), nodo('div', 'bloque', String(k + 1))); podio.append(p);
+    }
+    capa.append(podio);
+    if (rows.length > 3) {
+      const caja = nodo('div', 'panel'); caja.style.width = 'min(480px,100%)'; const ol = nodo('ol', 'ranking'); ol.style.margin = '0';
+      rows.slice(3).forEach((r, i) => { const li = nodo('li', r[0] === yo ? 'yo' : ''), m = nodo('span', 'punto'); m.style.background = this.colorFila(r); const nom = nodo('span', 'nom', r[1]); if (r[3]) nom.append(nodo('small', '', 'bot')); li.append(nodo('span', 'pos', String(i + 4)), m, nom, nodo('span', 'val', String(r[5]))); ol.append(li); });
+      caja.append(ol); capa.append(caja);
+    }
+    const pie = nodo('div', 'f-pie'); pie.style.marginTop = '16px';
+    if (this.soyLider()) { const b = nodo('button', 'btn', 'Jugar otra vez'); b.type = 'button'; b.addEventListener('click', () => this.volverAEspera()); pie.append(b); }
+    else pie.append(nodo('span', 'nota', 'El líder decide si siguen jugando.'));
+    const s = nodo('button', 'btn sec', 'Salir de la fiesta'); s.type = 'button'; s.addEventListener('click', () => this.salirSala(false)); pie.append(s);
+    capa.append(pie);
+    SFX.fanfarria();
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const cf = nodo('div', 'f-confeti'), cols = ['var(--oro)', 'var(--menta)', 'var(--rosa)', 'var(--d1)', 'var(--d0)', 'var(--d3)'];
+      for (let i = 0; i < 44; i++) { const p = document.createElement('i'); p.style.left = Math.random() * 100 + '%'; p.style.background = cols[i % cols.length]; p.style.animationDuration = (2.6 + Math.random() * 2.6) + 's'; p.style.animationDelay = (Math.random() * 1.6) + 's'; cf.append(p); }
+      capa.append(cf);
+    }
+  },
+
+  /* --- pantalla de la sala (lista de jugadores y configuración) --- */
+  link() { return location.href.split('#')[0].split('?')[0] + '?sala=' + encodeURIComponent(this.codigo); },
+  copiar(texto, btn) {
+    const ok = () => { const t = btn.textContent; btn.textContent = '¡Copiado!'; setTimeout(() => { btn.textContent = t; }, 1500); };
+    const viejo = () => { const ta = document.createElement('textarea'); ta.value = texto; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.append(ta); ta.select(); try { document.execCommand('copy'); ok(); } catch (e) {} ta.remove(); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texto).then(ok, viejo); else viejo();
+  },
+  estadoDe(p) {
+    const pr = p.presence || {}, e = this.est;
+    if (e && e.fase === 'ronda') return num(pr.ronda) === e.n ? (pr.estado === 'fin' ? 'terminó la ronda' : 'jugando') : 'esperando la siguiente ronda';
+    if (e && e.fase === 'tabla') return 'viendo la tabla';
+    if (e && e.fase === 'final') return 'en el podio';
+    return 'en la sala';
+  },
+  pintar() {
+    const en = !!this.sala; $('#fPortada').hidden = en; $('#fSala').hidden = !en;
+    if (!en) { const n = $('#fNombre'); if (document.activeElement !== n && !n.value) n.value = Store.perfil.alias || ''; return; }
+    $('#fCod').textContent = this.local ? 'práctica solo' : this.codigo;
+    $('#fCopCod').hidden = $('#fCopLink').hidden = this.local;
+    this.pintarJug(); this.pintarCfg();
+  },
+  pintarJug() {
+    const g = this.gente(), lid = this.lider(), yo = this.miLabel();
+    const sig = JSON.stringify(g.map(p => [p.peer, (p.presence || {}).alias, (p.presence || {}).color, p.host, this.estadoDe(p)])) + (this.espectando || '');
+    if (sig === this.sig.jug) return; this.sig.jug = sig;
+    $('#fN').textContent = `(${g.length})`;
+    const ul = $('#fJug'); ul.replaceChildren();
+    for (const p of g) {
+      const pr = p.presence || {}, li = nodo('li'), av = nodo('span', 'av', (txt(pr.alias) || '?').trim().charAt(0).toUpperCase() || '?'); av.style.background = colorDe(pr.color);
+      li.append(av, nodo('span', 'nom', txt(pr.alias, 24) || 'Sin nombre'));
+      if (p.host) li.append(nodo('span', 'tag-lider', 'líder')); if (p.peer === yo) li.append(nodo('span', 'tu', 'tú'));
+      li.append(nodo('span', 'que', this.estadoDe(p))); ul.append(li);
+    }
+    const nota = $('#fEst');
+    nota.textContent = !lid ? 'Conectando con la sala…' : this.espectando ? `Hay una partida en curso (ronda ${this.espectando}). Entras en la siguiente ronda.` : this.local ? '' : 'Comparte el código o el link para que entren más personas.';
+  },
+  pintarCfg() {
+    const soy = this.soyLider(), lid = this.lider(), e = this.est, espera = !e || e.fase === 'espera';
+    const sig = JSON.stringify([this.cfg, soy, !!lid, espera, this.cv, this.local]);
+    if (sig === this.sig.cfg) return; this.sig.cfg = sig;
+    const cont = $('#fCfg'); cont.replaceChildren(); const c = this.cfg || this.cfgBase();
+    $('#fCfgTit').textContent = soy ? 'Configuración (tú eres el líder)' : 'Configuración';
+    if (!lid) { cont.append(nodo('p', 'nota', 'Conectando con la sala…')); return; }
+    const editable = soy && espera;
+    const set = (k, v) => { this.cfg[k] = v; this.pubCfg(); this.sig.cfg = ''; this.pintarCfg(); };
+    const campo = (tit, ctrl, ancho) => { const d = nodo('div', 'campo' + (ancho ? ' ancho' : '')); d.append(nodo('span', 'etq', tit), ctrl); return d; };
+    const sel = (opts, val, k, num_) => { const s = document.createElement('select'); for (const [v, t] of opts) { const o = nodo('option', '', t); o.value = String(v); s.append(o); } s.value = String(val); s.disabled = !editable; s.addEventListener('change', () => set(k, num_ ? Number(s.value) : s.value)); return s; };
+    if (!editable) {
+      const ul = nodo('ul', 'f-resumen');
+      const fila = (a, b) => { const li = nodo('li'); li.append(nodo('span', '', a), nodo('span', '', b)); ul.append(li); };
+      const nm = id => ARENA[id] ? ARENA[id].nombre : id;
+      fila('Modo', c.modo === 'solo' ? `Un solo juego: ${nm(c.juego)}` : 'Fiesta (varios juegos)');
+      if (c.modo !== 'solo') fila('Juegos', (c.juegos.length ? c.juegos : ARENA_ORDEN).map(nm).join(', '));
+      fila('Rondas', String(c.rondas)); fila('Tiempo por ronda', (OPC_TIEMPO.find(o => o[0] === c.tiempo) || OPC_TIEMPO[0])[1]);
+      fila('Texto', (NOMBRES_TEXTO.find(o => o[0] === c.texto) || NOMBRES_TEXTO[0])[1]); fila('Palabras', (NOMBRES_PAL.find(o => o[0] === c.pal) || NOMBRES_PAL[1])[1]);
+      fila('Bots', c.bots.length ? c.bots.map(b => (BOT_NIVELES.find(n => n.id === b) || {}).nombre).join(', ') : 'Sin bots'); fila('Tabla visible', c.pausa + ' s');
+      cont.append(ul);
+      cont.append(nodo('p', 'nota', soy ? 'La partida está en curso. Cuando termine podrás cambiar la configuración.' : 'Solo el líder cambia la configuración.'));
+      return;
+    }
+    const grid = nodo('div', 'f-cfg');
+    const modo = nodo('div', 'segmento');
+    for (const [v, t] of [['fiesta', 'Fiesta · varios juegos'], ['solo', 'Un solo juego']]) { const b = nodo('button', '', t); b.type = 'button'; b.setAttribute('aria-pressed', String(c.modo === v)); b.addEventListener('click', () => set('modo', v)); modo.append(b); }
+    grid.append(campo('Modo', modo, true));
+    if (c.modo === 'solo') {
+      grid.append(campo('Juego', sel(ARENA_ORDEN.map(id => [id, ARENA[id].nombre]), c.juego, 'juego'), true));
+    } else {
+      const js = nodo('div', 'f-juegos');
+      for (const id of ARENA_ORDEN) {
+        const b = nodo('button', '', ARENA[id].nombre); b.type = 'button'; const on = c.juegos.includes(id); b.setAttribute('aria-pressed', String(on));
+        b.addEventListener('click', () => { const l = on ? c.juegos.filter(x => x !== id) : ARENA_ORDEN.filter(x => x === id || c.juegos.includes(x)); if (!l.length) return; set('juegos', l); });
+        js.append(b);
+      }
+      grid.append(campo('Juegos que entran en la fiesta', js, true));
+      grid.append(campo('Orden', sel([['azar', 'Al azar'], ['orden', 'En orden']], c.orden, 'orden')));
+    }
+    grid.append(campo('Rondas', sel(OPC_RONDAS.map(n => [n, String(n)]), c.rondas, 'rondas', true)));
+    grid.append(campo('Tiempo por ronda', sel(OPC_TIEMPO, c.tiempo, 'tiempo', true)));
+    grid.append(campo('Texto (carreras y equipos)', sel(NOMBRES_TEXTO, c.texto, 'texto')));
+    grid.append(campo('Palabras (largo)', sel(NOMBRES_PAL, c.pal, 'pal')));
+    grid.append(campo('Tabla visible entre rondas', sel(OPC_PAUSA.map(n => [n, n + ' segundos']), c.pausa, 'pausa', true)));
+    const bots = nodo('div', 'bots');
+    c.bots.forEach((id, i) => {
+      const nv = BOT_NIVELES.find(x => x.id === id); if (!nv) return;
+      const chip = nodo('span', 'bot'), pt = nodo('i'); pt.style.background = nv.color;
+      const q = nodo('button', '', '×'); q.type = 'button'; q.setAttribute('aria-label', `Quitar bot ${nv.nombre}`);
+      q.addEventListener('click', () => set('bots', c.bots.filter((_, j) => j !== i)));
+      chip.append(pt, document.createTextNode(`${nv.nombre} · ${nv.ppm} PPM`), q); bots.append(chip);
+    });
+    if (!c.bots.length) bots.append(nodo('span', 'nota', 'Sin bots: solo personas.'));
+    const bc = nodo('div', 'campo ancho'); bc.append(nodo('span', 'etq', 'Bots (hasta 5)'), bots);
+    if (c.bots.length < 5) {
+      const fb = nodo('div', 'fila-bot'), s = document.createElement('select'); s.setAttribute('aria-label', 'Nivel del bot');
+      for (const nv of BOT_NIVELES) { const o = nodo('option', '', `${nv.nombre} (${nv.ppm} PPM)`); o.value = nv.id; s.append(o); } s.value = 'zorro';
+      const b = nodo('button', 'btn sec chico', 'Agregar bot'); b.type = 'button'; b.addEventListener('click', () => set('bots', c.bots.concat(s.value)));
+      fb.append(s, b); bc.append(fb);
+    }
+    grid.append(bc); cont.append(grid);
+    const ini = nodo('button', 'btn f-empezar', c.modo === 'solo' ? '¡A jugar!' : '¡Empezar la fiesta!'); ini.type = 'button'; ini.style.width = '100%'; ini.style.marginTop = '14px';
+    ini.addEventListener('click', () => this.iniciar());
+    const sinRivales = this.gente().length < 2 && !c.bots.length;
+    cont.append(ini);
+    if (sinRivales) cont.append(nodo('p', 'nota', 'Estás solo y sin bots: igual puedes jugar, pero la tabla será de una sola persona.'));
+  },
+
+  /* --- avisos cuando alguien intenta irse a otra pestaña --- */
+  avisoNav(texto) {
+    if (UI.actual !== 'arenaJuego') UI.vista('fiesta');
+    if (UI.actual === 'arenaJuego') { $('#aAyuda').textContent = texto; return; }
+    const a = $('#fAviso'); a.replaceChildren(nodo('p', 'f-aviso', texto)); clearTimeout(this.tAviso); this.tAviso = setTimeout(() => a.replaceChildren(), 4500);
+  },
+  bloquearArena() { this.avisoNav('Para jugar la Arena normal, sal primero de la sala.'); },
+  avisoRonda() { this.avisoNav('Estás en plena fiesta: usa «Salir de la fiesta» si quieres irte.'); },
+
+  /* --- arranque y enlaces de invitación --- */
+  alArrancar() {
+    let c = ''; try { c = new URLSearchParams(location.search).get('sala') || ''; } catch (e) {}
+    c = Duelo.normalizar(c); if (!c) return;
+    irA('fiesta'); $('#fCodigo').value = c;
+    if (Store.perfil.alias) { $('#fNombre').value = Store.perfil.alias; this.entrar(c); }
+    else { this.msg(`Pon tu nombre y dale a «Entrar» para unirte a la sala ${c}.`); $('#fNombre').focus(); }
+  }
+};
+
+$('#tabFiesta').addEventListener('click', () => irA('fiesta'));
+$('#fCrear').addEventListener('click', () => Fiesta.crear());
+$('#fSolo').addEventListener('click', () => Fiesta.entrar('solo', true));
+$('#fFormEntrar').addEventListener('submit', ev => { ev.preventDefault(); Fiesta.entrar($('#fCodigo').value); });
+$('#fSalir').addEventListener('click', () => Fiesta.salirSala(false));
+$('#fCopCod').addEventListener('click', ev => Fiesta.copiar(Fiesta.codigo, ev.currentTarget));
+$('#fCopLink').addEventListener('click', ev => Fiesta.copiar(Fiesta.link(), ev.currentTarget));
+
+
 const hot = window.claude && window.claude.hot;
 if (hot && hot.snapshot) hot.snapshot(() => ({ sala: Duelo.codigo || $('#inSala').value || '' }));
 if (hot && hot.ready) hot.ready(arrancar); else arrancar((hot && hot.data) || {});
