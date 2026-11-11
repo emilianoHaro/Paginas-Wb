@@ -381,6 +381,55 @@ legend{font-weight:700;font-size:.9rem;margin-bottom:6px;padding:0}
   .pestanas button{padding:6px 9px 8px;font-size:1rem;gap:4px}
   .pestanas .nuevo{padding:0 5px;font-size:.58rem}
 }
+.a-ajustes{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.a-ajustes label{font-weight:700;font-size:.9rem}
+/* multijugador 2 */
+:root{--eq0:#e63946;--eq1:#2a7de1}
+.f-fila.eq0{border-left:6px solid var(--eq0)}
+.f-fila.eq1{border-left:6px solid var(--eq1)}
+.f-gana.neg{color:var(--rosa)}
+.f-eq{display:flex;width:min(660px,100%);border-radius:10px;overflow:hidden;font-weight:800;font-family:var(--display);color:#fff;margin:2px 0 6px}
+.f-eq>div{padding:6px 12px;min-width:0;white-space:nowrap;flex-basis:0}
+.f-eq-0{background:var(--eq0)}.f-eq-1{background:var(--eq1);text-align:right}
+.f-eq.grande{font-size:1.6rem;margin:6px 0}
+.f-poder{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;background:var(--tecla);border-radius:12px;padding:8px 14px 10px;margin-top:8px;max-width:660px;box-shadow:inset 0 -3px 0 var(--sombra)}
+.f-poder-d{color:var(--tenue)}
+.f-reac{position:fixed;right:12px;bottom:12px;z-index:45;display:flex;align-items:center;gap:6px}
+.f-reac[hidden],.f-reac-f[hidden]{display:none}
+.f-reac-f{display:flex;gap:4px;background:var(--tecla);border-radius:999px;padding:4px 8px;box-shadow:0 2px 8px rgb(0 0 0/.25)}
+.f-reac button{border:0;background:transparent;font-size:1.4rem;cursor:pointer;line-height:1;padding:4px}
+.f-reac-t{background:var(--tecla)!important;border-radius:50%;width:44px;height:44px;box-shadow:0 2px 8px rgb(0 0 0/.25)}
+.f-flota{position:fixed;inset:0;pointer-events:none;z-index:46;overflow:hidden}
+.f-fl{position:absolute;bottom:70px;display:flex;flex-direction:column;align-items:center;font-size:2.2rem;animation:flota 2.4s ease-out forwards}
+.f-fl small{font-size:.7rem;font-weight:700;background:var(--tecla);color:var(--texto);border-radius:8px;padding:0 6px}
+@keyframes flota{from{transform:translateY(0);opacity:1}to{transform:translateY(-55vh);opacity:0}}
+.f-toast{position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:47;background:var(--tecla);color:var(--texto);border-radius:12px;padding:8px 14px;box-shadow:0 2px 10px rgb(0 0 0/.3);max-width:90vw;font-weight:700}
+.f-toast[hidden]{display:none}
+.f-chat{margin-top:12px}
+.f-chat[hidden]{display:none}
+.f-chat-log{list-style:none;margin:0 0 8px;padding:0;max-height:180px;overflow:auto;display:grid;gap:4px;font-size:.92rem}
+.f-chat-log li.yo b{color:var(--menta)}
+.f-chat form{display:flex;gap:8px}.f-chat input{flex:1;min-width:0}
+@media (prefers-reduced-motion:reduce){.f-fl{animation-duration:.01s}}
+.f-chat{background:transparent;box-shadow:none;padding:0}
+/* perfil 2 */
+#dlgPerfil{max-height:90vh;overflow:auto}
+.p-extra{display:grid;gap:8px;margin:10px 0}
+.p-extra select,.p-extra textarea{width:100%}
+.p-avatares{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.p-avatares label{position:relative;cursor:pointer}
+.p-avatares input{position:absolute;opacity:0;inset:0}
+.p-avatares span{display:grid;place-items:center;height:40px;border-radius:8px;background:var(--fondo);font-size:1.3rem;box-shadow:inset 0 -3px 0 var(--sombra)}
+.p-avatares input:checked+span{outline:3px solid var(--menta);background:var(--tecla)}
+.p-avatares input:focus-visible+span{outline:3px solid var(--oro)}
+.p-det summary{cursor:pointer;font-weight:700;padding:4px 0}
+.p-logros,.p-stats{list-style:none;margin:6px 0;padding:0;display:grid;gap:4px;font-size:.88rem}
+.p-logros li{color:var(--tenue)}.p-logros li.ok{color:var(--texto)}
+.p-stats li{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid var(--fondo);padding:2px 0}
+.p-cod{display:grid;gap:6px}
+.p-aviso{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:60;display:grid;gap:6px;max-width:92vw}
+.p-aviso-i{background:var(--oro);color:var(--tecla);font-weight:700;border-radius:12px;padding:8px 14px;box-shadow:0 2px 10px rgb(0 0 0/.3)}
+.f-ti{color:var(--tenue);font-weight:400;font-size:.8rem}
 </style>
 </head>
 <body>
@@ -2750,6 +2799,128 @@ $('#aFoco').addEventListener('click', enfocar);
 $('#aSonido').addEventListener('click', () => { Store.perfil.sonido = !Store.perfil.sonido; const t = Store.perfil.sonido ? 'Sonido: sí' : 'Sonido: no'; $('#aSonido').textContent = t; $('#btnSonido').textContent = t; Store.guardarLocal(); enfocar(); });
 
 function arenaLeyenda() { const b = $('#botsLeyenda'); b.replaceChildren(); for (const nv of BOT_NIVELES) { const s = nodo('span'), i = nodo('i'); i.style.background = nv.color; s.append(i, document.createTextNode(`${nv.nombre} · ${nv.ppm} PPM`)); b.append(s); } }
+/* ---------- BANCO DE HUMOR (parodias propias, no citas) ---------- */
+const HUMOR = {
+  anime: [
+    'Entrenó tres años para ganar, pero el rival se despertó con otro poder y a él le tocó llorar.',
+    'En el anime el discurso dura diez minutos y el golpe, medio segundo.',
+    'Mi nivel de energía ninja hoy, dormir hasta tarde y gritar mi nombre de ataque en la ducha.',
+    'Prometió ser el mejor y lo único que consiguió fue un ramen gratis por insistente.',
+    'El protagonista nunca se rinde, pero su teléfono sí se queda sin batería a media pelea.',
+    'Otra vez salvó el mundo y aun así nadie le agradeció ni le pagó la cuenta.',
+    'Reencarnar en otro mundo suena genial hasta que descubres que también hay impuestos.',
+    'Este equipo de voleibol sube la pelota con más fe que mi plan de estudio.',
+    'Mi héroe favorito tiene un poder increíble y cero habilidad para escuchar consejos.',
+    'En esta academia de héroes la tarea es evitar que los alumnos destruyan el edificio.',
+    'El villano explicó todo su plan y solo después preguntó si alguien quería detenerlo.',
+    'Entrenamiento secreto, correr, gritar, comer ramen y repetir hasta el final de la temporada.',
+    'Llegó tarde por culpa de un gato, una anciana y un tren que explotó. Excusa válida.',
+    'La explicación del poder ocupa tres episodios y al final se resuelve con un grito.',
+    'Su secreto era la amistad, y también un bono de poder que nadie había mencionado antes.',
+    'Prefiero un mundo mágico, aunque sea a costa de que todos me exijan trabajar de héroe.',
+    'Cuando todo parece perdido aparece un flashback de doce minutos para animarte.',
+    'Me dijeron que sin talento no se puede, pero él practicó mil veces y yo solo vi el resumen.',
+    'El maestro ninja dijo que el verdadero poder está dentro de ti, justo detrás de la pereza.',
+    'Un poder que solo funciona cuando estás enojado es mala idea para la vida en pareja.'
+  ],
+  series: [
+    'Dijeron que el invierno se acercaba y pasó una temporada entera sin que nada cambiara.',
+    'En el Trono de Hierro nadie dura más de tres temporadas, ni siquiera con buen seguro.',
+    'Prometieron un final épico y entregaron un bostezo con efectos especiales.',
+    'Empecé un capítulo antes de dormir y ahora vi la temporada completa y no tengo cuerpo.',
+    'En la serie de dragones la política es más peligrosa que el fuego.',
+    'Un profesor de química descubrió un negocio rentable y un hobby muy poco recomendable.',
+    'En esa oficina nadie trabaja, pero todos tienen una opinión sobre el pastel de cumpleaños.',
+    'Cada sábado alguien dice que verá solo un capítulo. Cada domingo nadie recuerda el sábado.',
+    'La temporada nueva trae a un personaje que muere en el segundo episodio y todos lo olvidan.',
+    'En Hora de Aventura salvar al mundo es lo normal y entregar la tarea a tiempo es lo raro.',
+    'Aquel perro mágico estira todo menos su presupuesto de bocadillos.',
+    'Steven Universe resuelve con una canción lo que el resto resuelve con terapia.',
+    'La heroína cae con estilo, brilla con estilo y se pelea con su propio horario de clases.',
+    'Cualquier misterio se resuelve en un episodio si el personaje deja de hacer exactamente lo que hizo.',
+    'La banda de tontos que juega por dinero termina jugando por su propia vida. Qué sorpresa.',
+    'Bajó al sótano a investigar el ruido. Los espectadores gritaron lo que ya sabían.',
+    'Esa serie coreana me dejó sin dormir y con desconfianza hacia las canicas.',
+    'Siempre hay un plan perfecto en la serie, hasta que el plan abre la boca y habla.',
+    'La mejor temporada es siempre la anterior, según los fans y sus recuerdos.',
+    'Después de cinco temporadas el villano aún no tiene una cita decente en la agenda.'
+  ],
+  pelis: [
+    'Los vengadores se reúnen para salvar el universo y se tardan más en elegir lugar que en ganar.',
+    'Con gran poder viene una gran factura de lavandería de trajes ajustados.',
+    'En la película de barcos el amor fue eterno, pero la puerta era chica para dos.',
+    'Una galaxia muy lejana que, curiosamente, tiene los mismos problemas familiares que la mía.',
+    'El mago adolescente tiene mejores clases que yo, pero también peores vecinos.',
+    'Un anillo para gobernarlos a todos y yo ni siquiera encuentro mis llaves.',
+    'El ogro verde tiene más autoestima que cualquier motivador de internet.',
+    'Los juguetes cobran vida cuando nadie mira, igual que mi lista de pendientes.',
+    'Tomó la pastilla roja y descubrió que el mundo era un trabajo de oficina con mejor sonido.',
+    'El caballero de la noche resuelve todo con gadgets y mal humor. Un mood.',
+    'Sigue la música, abraza a la familia y evita a los antepasados con mal carácter. Moraleja de Coco.',
+    'En toda película de acción hay una explosión que no tenía por qué ocurrir.',
+    'La secuela fue peor, pero los trailers fueron un espectáculo de primer nivel.',
+    'Cuando la película dice basada en hechos reales, los hechos reales no firmaron contrato.',
+    'El detective brillante llegó tarde a la escena porque se detuvo a lucirse en el camino.',
+    'Si la banda sonora te dice que llores, tú obedeces, aunque fuera una película de robots.',
+    'Hay finales que no cierran nada y obligan a ver la próxima parte. Qué casualidad comercial.',
+    'Ese héroe salta de un edificio y cae de pie. Yo me tropiezo con el escalón de mi casa.',
+    'El dinosaurio no te persigue por maldad, solo ejerce su derecho al almuerzo.',
+    'Película de tres horas, dos de ellas, introducciones con nombres imposibles.'
+  ],
+  prog: [
+    'En mi máquina funciona, pero tu máquina es parte del problema.',
+    'No es un error, es una característica que nadie documentó.',
+    'El código compila a la primera. Sospechoso, muy sospechoso.',
+    'Arreglé un bug y aparecieron tres. Es un sistema de ahorro por volumen.',
+    'Borré el comentario y el programa dejó de funcionar. No hay explicación.',
+    'Mi commit decía arreglo final. Era el número catorce.',
+    'Los programadores no envejecen, solo dejan de entender su propio código.',
+    'Subí a producción un viernes y descubrí lo que significa tener fines de semana libres.',
+    'Dijeron que era un cambio pequeño. El cambio pequeño tocó cuarenta archivos.',
+    'La documentación está actualizada, con fecha de hace tres versiones.',
+    'Cuando el código no funciona, lo explico en voz alta al patito de goma y sigue sin funcionar.',
+    'Una variable llamada temp lleva cuatro años en producción.',
+    'Prometí limpiar el código mañana. Hace un año que mañana no llega.',
+    'Revisión de código, encontrar los errores ajenos con la misma seguridad que ignoro los míos.',
+    'Un punto y coma me costó dos horas. El punto y coma no se disculpó.',
+    'El script lo escribí yo, pero hoy no tengo idea de quién es el culpable.',
+    'Primero haz que funcione, después hazlo bonito, y luego ya no lo toques nunca.',
+    'Reiniciar es el truco más usado del soporte técnico y también del mío.',
+    'Se pierde más tiempo discutiendo el nombre de una función que escribiéndola.',
+    'La prueba pasó en verde, aunque probaba que la prueba pasa en verde.'
+  ],
+  sistemas: [
+    'Lo apagué y lo volví a encender, así funciona la informática desde siempre.',
+    'Mi contraseña segura tiene diecisiete símbolos y ninguno lo recuerdo.',
+    'La nube es solo la computadora de otra persona con mejor marketing.',
+    'Un proceso zombi no come cerebros, solo ocupa lugar y no responde llamadas.',
+    'El kernel tiene más sueño que yo un lunes a las siete de la mañana.',
+    'Un deadlock es cuando dos procesos se esperan por cortesía y nadie come.',
+    'Instalé una actualización y ahora el wifi es otro tema de conversación.',
+    'La memoria llena se parece a mi cuarto, todo adentro y nada se encuentra.',
+    'Mi base de datos tiene tantas tablas que ya tiene vida social propia.',
+    'El servidor se cayó justo cuando entregué la tarea, qué casualidad tan puntual.',
+    'Una pantalla azul no es una crisis, es el sistema pidiendo un abrazo.',
+    'Todo parecía estable hasta que alguien dijo ya casi acabamos.',
+    'Linux me dio libertad total, incluso para romper todo en un solo comando.',
+    'La copia de seguridad es lo primero que se recuerda justo después del desastre.',
+    'El administrador tiene permisos para todo y paciencia para nada.',
+    'El antivirus encontró una amenaza, mi carpeta de tareas pendientes.',
+    'Hay dos tipos de usuarios, los que respaldan y los que aprenden por las malas.',
+    'Mi laptop calienta tanto que cuenta como calefacción para toda la casa.',
+    'Los permisos denegados son la forma educada del sistema de decirte no.',
+    'La red va lenta porque todos descargamos lo mismo a la misma hora. Solidaridad digital.'
+  ]
+};
+const HUMOR_TEMAS = [['anime', 'Anime'], ['series', 'Series'], ['pelis', 'Películas'], ['prog', 'Programación'], ['sistemas', 'Sistemas']];
+for (const k of Object.keys(HUMOR)) for (let i = 0; i < HUMOR[k].length; i++) HUMOR[k][i] = quitarAcentos(HUMOR[k][i]);
+function textoHumor(min, r = Math.random, temas) {
+  const ids = (temas && temas.length ? temas : Object.keys(HUMOR)).filter(k => HUMOR[k]);
+  const lista = barajar(ids.flatMap(k => HUMOR[k]), r); let t = '', i = 0;
+  while (t.length < min) { t += (t ? ' ' : '') + lista[i % lista.length]; i++; }
+  return t;
+}
+
 /* =================== FIESTA: salas personalizadas y modo fiesta =================== */
 for (const id of Object.keys(ARENA)) ARENA[id].durOrig = ARENA[id].dur;
 const dormir = ms => new Promise(r => setTimeout(r, ms));
@@ -2790,13 +2961,15 @@ function textoMezcla(r, min, pal) {
 /* ---------- ajustes que la Arena lee cuando hay una sala personalizada ---------- */
 Object.assign(Arena, {
   cfgSala: null, semExtra: '',
-  restaurarDur() { for (const id of Object.keys(ARENA)) ARENA[id].dur = ARENA[id].durOrig; },
+  restaurarDur() { for (const id of Object.keys(ARENA)) { if (ARENA[id].durOrig === undefined) ARENA[id].durOrig = ARENA[id].dur; ARENA[id].dur = ARENA[id].durOrig; } },
   textoRonda(r) {
     const c = this.cfgSala || {}, largo = this.mod.largo;
+    if (this.mod.textoPropio) return this.mod.textoPropio(r, largo);
     if (c.texto === 'palabras') return textoPalabras(r, largo, c.pal);
     if (c.texto === 'numeros') return textoNumerosR(r, largo);
     if (c.texto === 'mezcla') return textoMezcla(r, largo, c.pal);
-    return textoFrases(largo, r);
+    if (c.texto === 'frases') return textoFrases(largo, r);
+    return textoHumor(largo, r, c.temas);
   },
   palabra(r, a, b) {
     const pl = this.cfgSala && this.cfgSala.pal;
@@ -2828,7 +3001,10 @@ Object.assign(Arena, {
 }
 
 /* ---------- Fiesta ---------- */
-const NOMBRES_TEXTO = [['frases', 'Frases'], ['palabras', 'Palabras sueltas'], ['numeros', 'Números y datos'], ['mezcla', 'Mezcla de todo']];
+const SI_NO = [['no', 'No'], ['si', 'Sí']];
+const PW_TIPOS = ['doble', 'bomba', 'escudo'];
+const PW_INFO = { doble: ['Doble', 'Tus puntos de la ronda valen el doble.'], bomba: ['Bomba', 'Le quita 250 puntos a quien va primero.'], escudo: ['Escudo', 'Te protege de bombas y suma 150 puntos.'] };
+const NOMBRES_TEXTO = [['humor', 'Humor geek (anime, series, pelis, programacion)'], ['frases', 'Frases y refranes'], ['palabras', 'Palabras sueltas'], ['numeros', 'Números y datos'], ['mezcla', 'Mezcla de todo']];
 const NOMBRES_PAL = [['cortas', 'Cortas'], ['normal', 'Normales'], ['largas', 'Largas']];
 const OPC_TIEMPO = [[0, 'Normal (el de cada juego)'], [30, '30 segundos'], [45, '45 segundos'], [60, '1 minuto'], [90, '1 min 30 s'], [120, '2 minutos'], [180, '3 minutos']];
 const OPC_RONDAS = [1, 2, 3, 4, 5, 6, 8, 10];
@@ -2840,18 +3016,20 @@ const Fiesta = {
   eraLider: false, t0Ronda: 0, tSig: 0, cerrando: false, tick: 0, tIntro: 0, tAnim: [], animId: 0, tCuenta: 0,
   sig: { jug: '', cfg: '' }, confirmSalir: false, tConf: 0, espectando: 0,
 
-  cfgBase() { return { modo: 'fiesta', juegos: ARENA_ORDEN.slice(), orden: 'azar', juego: ARENA_ORDEN[0], rondas: 5, tiempo: 0, texto: 'frases', pal: 'normal', bots: [], pausa: 8 }; },
+  cfgBase() { return { modo: 'fiesta', juegos: ARENA_ORDEN.slice(), orden: 'azar', juego: ARENA_ORDEN[0], rondas: 5, tiempo: 0, texto: 'humor', pal: 'normal', dif: 'medio', eq: 'no', pw: 'si', chat: 'si', bots: [], pausa: 8 }; },
   limpiarCfg(c) {
     const b = this.cfgBase(); if (!c || typeof c !== 'object') return b;
     return {
       modo: c.modo === 'solo' ? 'solo' : 'fiesta',
-      juegos: Array.isArray(c.juegos) ? c.juegos.filter(j => ARENA[j]).slice(0, 8) : b.juegos,
+      juegos: Array.isArray(c.juegos) ? c.juegos.filter(j => ARENA[j]).slice(0, 24) : b.juegos,
       orden: c.orden === 'orden' ? 'orden' : 'azar',
       juego: ARENA[c.juego] ? c.juego : b.juego,
       rondas: clamp(Math.round(num(c.rondas)) || 5, 1, 12),
       tiempo: OPC_TIEMPO.some(o => o[0] === c.tiempo) ? c.tiempo : 0,
-      texto: NOMBRES_TEXTO.some(o => o[0] === c.texto) ? c.texto : 'frases',
+      texto: NOMBRES_TEXTO.some(o => o[0] === c.texto) ? c.texto : 'humor',
       pal: NOMBRES_PAL.some(o => o[0] === c.pal) ? c.pal : 'normal',
+      dif: ['facil', 'medio', 'dificil'].includes(c.dif) ? c.dif : 'medio',
+      eq: c.eq === 'si' ? 'si' : 'no', pw: c.pw === 'no' ? 'no' : 'si', chat: c.chat === 'no' ? 'no' : 'si',
       bots: Array.isArray(c.bots) ? c.bots.filter(x => BOT_NIVELES.some(n => n.id === x)).slice(0, 5) : [],
       pausa: OPC_PAUSA.includes(c.pausa) ? c.pausa : 8
     };
@@ -2859,7 +3037,7 @@ const Fiesta = {
   limpiarEst(e) {
     if (!e || typeof e !== 'object' || !['espera', 'ronda', 'tabla', 'final'].includes(e.fase)) return null;
     const o = { id: txt(e.id, 12), fase: e.fase, n: clamp(Math.round(num(e.n)), 0, 20), de: clamp(Math.round(num(e.de)), 0, 20), v: Math.round(num(e.v)), lista: Array.isArray(e.lista) ? e.lista.filter(j => ARENA[j]).slice(0, 20) : [] };
-    if (Array.isArray(e.tabla)) o.tabla = e.tabla.slice(0, 14).map(r => Array.isArray(r) ? [txt(String(r[0]), 20), txt(String(r[1]), 14), txt(String(r[2]), 12), r[3] ? 1 : 0, Math.round(num(r[4])), Math.round(num(r[5])), txt(String(r[6]), 16), Math.round(num(r[7]))] : null).filter(Boolean);
+    if (Array.isArray(e.tabla)) o.tabla = e.tabla.slice(0, 14).map(r => Array.isArray(r) ? [txt(String(r[0]), 20), txt(String(r[1]), 14), txt(String(r[2]), 12), r[3] ? 1 : 0, Math.round(num(r[4])), Math.round(num(r[5])), txt(String(r[6]), 16), Math.round(num(r[7])), clamp(Math.round(num(r[8])), 0, 2), PW_TIPOS.includes(r[9]) ? r[9] : '', PW_TIPOS.includes(r[10]) ? r[10] : ''] : null).filter(Boolean);
     if ((o.fase === 'tabla' || o.fase === 'final') && !(o.tabla && o.tabla.length)) return null;
     if (o.fase === 'ronda' && !o.lista[o.n - 1]) return null;
     return o;
@@ -2960,7 +3138,7 @@ const Fiesta = {
     if (!this.cfg) this.cfg = this.cfgBase();
     this.pubCfg();
     const base = this.est ? this.est : { id: txt(Math.random().toString(36).slice(2, 8)), fase: 'espera', n: 0, de: 0, lista: [] };
-    this.tot = {}; if (this.ultTabla) for (const r of this.ultTabla) this.tot[r[0]] = r[5];
+    this.tot = {}; this.eqMap = {}; this.pw = {}; if (this.ultTabla) for (const r of this.ultTabla) { this.tot[r[0]] = r[5]; if (r[8] === 0 || r[8] === 1) this.eqMap[r[0]] = r[8]; if (r[9]) this.pw[r[0]] = r[9]; }
     const e = Object.assign({}, base); delete e.v;
     if (e.fase === 'ronda') { this.t0Ronda = Date.now() - 8000; this.cerrando = false; }
     if (e.fase === 'tabla') this.tSig = Date.now() + this.cfg.pausa * 1000 + 2000;
@@ -3021,7 +3199,7 @@ const Fiesta = {
     if (UI.actual === 'juego') G.salir();
     clearTimeout(this.tIntro); this.limpiarAnim();
     Arena.restaurarDur(); if (c.tiempo) mod.dur = c.tiempo;
-    Arena.cfgSala = { texto: c.texto, pal: c.pal }; Arena.semExtra = '~' + e.id;
+    Arena.cfgSala = { texto: c.texto, pal: c.pal, dif: c.dif }; Arena.semExtra = '~' + e.id;
     Arena.botsIds = c.bots.slice(0, 5);
     Arena.id = id; Arena.mod = mod; Arena.ronda = e.n; Arena.modo = 'linea'; Arena.sala = this.sala; Arena.codigo = this.codigo;
     UI.vista('arenaJuego'); $('#aCapa').hidden = true; $('#aPanel').style.textAlign = '';
@@ -3057,19 +3235,32 @@ const Fiesta = {
     }
   },
   cerrarRonda() {
-    const e = this.est, A = Arena;
+    const e = this.est, A = Arena, cfg = this.cfg || this.cfgBase();
     A.parts = A.participantes(A.mod.dur * 1000); A.lugaresMap = A.lugares();
     const orden = A.orden(), n = orden.length;
+    this.eqMap = this.eqMap || {}; this.pw = this.pw || {};
+    if (cfg.eq === 'si') {
+      const cnt = [0, 0]; for (const k of Object.keys(this.eqMap)) cnt[this.eqMap[k]]++;
+      for (const p of orden) if (this.eqMap[p.id] === undefined) { const t = cnt[0] <= cnt[1] ? 0 : 1; this.eqMap[p.id] = t; cnt[t]++; }
+    }
+    const usos = {};
+    if (cfg.pw === 'si') for (const p of this.gente()) { const u = p.presence && p.presence.pu; if (u && num(u.n) === e.n && PW_TIPOS.includes(u.t) && this.pw[p.peer] === u.t) usos[p.peer] = u.t; }
+    const tope = orden.slice().sort((a, b) => (this.tot[b.id] || 0) - (this.tot[a.id] || 0))[0];
+    const delta = {};
+    orden.forEach((p, i) => { let g = Math.round(1000 * (n - i) / n); if (usos[p.id] === 'doble') g *= 2; if (usos[p.id] === 'escudo') g += 150; delta[p.id] = g; });
+    for (const k of Object.keys(usos)) if (usos[k] === 'bomba' && tope && tope.id !== k && usos[tope.id] !== 'escudo') delta[tope.id] -= 250;
+    for (const k of Object.keys(usos)) delete this.pw[k];
+    if (cfg.pw === 'si' && n >= 3) orden.forEach((p, i) => { if (!p.bot && i >= Math.ceil(n / 2) && !this.pw[p.id]) this.pw[p.id] = pick(PW_TIPOS, Math.random); });
     const filas = orden.map((p, i) => {
-      const g = Math.round(1000 * (n - i) / n), antes = this.tot[p.id] || 0; this.tot[p.id] = antes + g;
+      const antes = this.tot[p.id] || 0, nuevo = Math.max(0, antes + delta[p.id]), g = nuevo - antes; this.tot[p.id] = nuevo;
       const pe = p.bot ? null : this.peers.find(x => x.peer === p.id), colorId = p.bot ? p.color : (pe && pe.presence && pe.presence.color) || Store.perfil.color;
-      return [p.id, txt(p.nombre, 14), txt(String(colorId), 12), p.bot ? 1 : 0, g, antes + g, txt(String(A.valor(p)), 16), i + 1];
+      return [p.id, txt(p.nombre, 14), txt(String(colorId), 12), p.bot ? 1 : 0, g, nuevo, txt(String(A.valor(p)), 16), i + 1, cfg.eq === 'si' && this.eqMap[p.id] !== undefined ? this.eqMap[p.id] : 2, p.bot ? '' : (this.pw[p.id] || ''), usos[p.id] || ''];
     });
     filas.sort((a, b) => b[5] - a[5] || a[7] - b[7]);
-    this.tSig = Date.now() + 3600 + this.cfg.pausa * 1000;
+    this.tSig = Date.now() + 3600 + cfg.pausa * 1000;
     this.pubEst({ id: e.id, fase: 'tabla', n: e.n, de: e.de, lista: e.lista, tabla: filas });
   },
-  volverAEspera() { if (!this.soyLider()) return; this.tot = {}; this.ultTabla = null; this.pubEst({ id: Math.random().toString(36).slice(2, 8), fase: 'espera', n: 0, de: 0, lista: [] }); },
+  volverAEspera() { if (!this.soyLider()) return; this.tot = {}; this.eqMap = {}; this.pw = {}; this.ultTabla = null; this.pubEst({ id: Math.random().toString(36).slice(2, 8), fase: 'espera', n: 0, de: 0, lista: [] }); },
 
   /* --- pantallas encima del juego --- */
   cerrarCapa() { const c = $('#fCapa'); c.hidden = true; c.replaceChildren(); },
@@ -3105,20 +3296,21 @@ const Fiesta = {
     const idxPrev = new Map(previo.map((o, i) => [o.r[0], i])), maxTot = Math.max(1, ...vis.map(o => o.r[5]));
     const mod = ARENA[e.lista[e.n - 1]];
     capa.append(nodo('div', 'f-sobre', `Ronda ${e.n} de ${e.de}`), nodo('h2', 'f-tit', 'Clasificación'), nodo('p', 'f-sub', mod ? mod.nombre : ''));
+    this.barraEquipos(capa, rows);
     const lista = nodo('div', 'f-lista'); lista.style.height = (vis.length * paso - 8) + 'px'; lista.style.setProperty('--fh', fh + 'px'); capa.append(lista);
     const els = vis.map(o => {
-      const r = o.r, f = nodo('div', 'f-fila' + (r[0] === yo ? ' yo' : '') + (r[3] ? ' bot' : ''));
+      const r = o.r, f = nodo('div', 'f-fila' + (r[0] === yo ? ' yo' : '') + (r[3] ? ' bot' : '') + (r[8] === 0 ? ' eq0' : r[8] === 1 ? ' eq1' : ''));
       const pos = nodo('div', 'f-pos', String(idxPrev.get(r[0]) + 1));
       const nom = nodo('div', 'f-nom'), linea = nodo('div', 'linea'), pu = nodo('span', 'punto'); pu.style.background = this.colorFila(r);
       linea.append(pu, nodo('span', 'n', r[1] + (r[0] === yo ? ' (tú)' : '')), ...(r[3] ? [nodo('span', 'tag-bot', 'bot')] : []));
       const barra = nodo('div', 'f-barra'), bi = nodo('i'); barra.append(bi);
-      nom.append(linea, nodo('div', 'sub', `${r[7]}.º esta ronda · ${r[6]}`), barra);
-      const pts = nodo('div', 'f-pts'), num0 = nodo('span', '', String(r[5] - r[4])), gana = nodo('span', 'f-gana', '+' + r[4]); pts.append(num0, gana);
+      nom.append(linea, nodo('div', 'sub', `${r[7]}.º esta ronda · ${r[6]}` + (r[10] ? ' · usó ' + PW_INFO[r[10]][0] : '')), barra);
+      const pts = nodo('div', 'f-pts'), num0 = nodo('span', '', String(r[5] - r[4])), gana = nodo('span', 'f-gana' + (r[4] < 0 ? ' neg' : ''), (r[4] >= 0 ? '+' : '') + r[4]); pts.append(num0, gana);
       f.append(pos, nom, pts); f.style.transform = `translateY(${idxPrev.get(r[0]) * paso}px)`; lista.append(f);
       bi.style.width = Math.round(100 * (r[5] - r[4]) / maxTot) + '%';
       return { o, f, pos, bi, num0, gana };
     });
-    const pie = nodo('div', 'f-pie'), sig = nodo('div', 'f-sig'); pie.append(sig); capa.append(pie);
+    const pie = nodo('div', 'f-pie'), sig = nodo('div', 'f-sig'); pie.append(sig); capa.append(pie); this.panelPoder(capa, e);
     const siguiente = e.n < e.de ? ARENA[e.lista[e.n]] : null;
     const final = () => {
       for (const x of els) { x.gana.classList.add('ver'); x.num0.textContent = String(x.o.r[5]); x.bi.style.width = Math.round(100 * x.o.r[5] / maxTot) + '%'; x.pos.textContent = String(x.o.k + 1); x.f.style.transform = `translateY(${x.o.k * paso}px)`; }
@@ -3153,7 +3345,7 @@ const Fiesta = {
       const p = nodo('div', 'f-puesto p' + (k + 1)), pu = nodo('div', 'nom', r[1] + (r[0] === yo ? ' (tú)' : '')); pu.style.color = this.colorFila(r);
       p.append(pu, nodo('div', 'tot', r[5] + ' pts'), nodo('div', 'bloque', String(k + 1))); podio.append(p);
     }
-    capa.append(podio);
+    capa.append(podio); this.barraEquipos(capa, rows, true);
     if (rows.length > 3) {
       const caja = nodo('div', 'panel'); caja.style.width = 'min(480px,100%)'; const ol = nodo('ol', 'ranking'); ol.style.margin = '0';
       rows.slice(3).forEach((r, i) => { const li = nodo('li', r[0] === yo ? 'yo' : ''), m = nodo('span', 'punto'); m.style.background = this.colorFila(r); const nom = nodo('span', 'nom', r[1]); if (r[3]) nom.append(nodo('small', '', 'bot')); li.append(nodo('span', 'pos', String(i + 4)), m, nom, nodo('span', 'val', String(r[5]))); ol.append(li); });
@@ -3195,13 +3387,14 @@ const Fiesta = {
   },
   pintarJug() {
     const g = this.gente(), lid = this.lider(), yo = this.miLabel();
-    const sig = JSON.stringify(g.map(p => [p.peer, (p.presence || {}).alias, (p.presence || {}).color, p.host, this.estadoDe(p)])) + (this.espectando || '');
+    const sig = JSON.stringify(g.map(p => [p.peer, (p.presence || {}).alias, (p.presence || {}).color, p.host, this.estadoDe(p), (p.presence || {}).av, (p.presence || {}).ti])) + (this.espectando || '');
     if (sig === this.sig.jug) return; this.sig.jug = sig;
     $('#fN').textContent = `(${g.length})`;
     const ul = $('#fJug'); ul.replaceChildren();
     for (const p of g) {
-      const pr = p.presence || {}, li = nodo('li'), av = nodo('span', 'av', (txt(pr.alias) || '?').trim().charAt(0).toUpperCase() || '?'); av.style.background = colorDe(pr.color);
-      li.append(av, nodo('span', 'nom', txt(pr.alias, 24) || 'Sin nombre'));
+      const pr = p.presence || {}, li = nodo('li'), av = nodo('span', 'av', AVATARES.includes(pr.av) ? pr.av : (txt(pr.alias) || '?').trim().charAt(0).toUpperCase() || '?'); av.style.background = colorDe(pr.color);
+      const nomL = nodo('span', 'nom', txt(pr.alias, 24) || 'Sin nombre'); if (TITULOS_LOGRO.includes(pr.ti)) nomL.append(nodo('small', 'f-ti', ' · ' + pr.ti));
+      li.append(av, nomL);
       if (p.host) li.append(nodo('span', 'tag-lider', 'líder')); if (p.peer === yo) li.append(nodo('span', 'tu', 'tú'));
       li.append(nodo('span', 'que', this.estadoDe(p))); ul.append(li);
     }
@@ -3225,7 +3418,7 @@ const Fiesta = {
       const nm = id => ARENA[id] ? ARENA[id].nombre : id;
       fila('Modo', c.modo === 'solo' ? `Un solo juego: ${nm(c.juego)}` : 'Fiesta (varios juegos)');
       if (c.modo !== 'solo') fila('Juegos', (c.juegos.length ? c.juegos : ARENA_ORDEN).map(nm).join(', '));
-      fila('Rondas', String(c.rondas)); fila('Tiempo por ronda', (OPC_TIEMPO.find(o => o[0] === c.tiempo) || OPC_TIEMPO[0])[1]);
+      fila('Dificultad', (DIF_OPC.find(o => o[0] === c.dif) || DIF_OPC[1])[1]); fila('Equipos', c.eq === 'si' ? 'Rojo vs Azul' : 'No'); fila('Poderes', c.pw === 'si' ? 'Sí' : 'No'); fila('Chat', c.chat === 'no' ? 'No' : 'Sí'); fila('Rondas', String(c.rondas)); fila('Tiempo por ronda', (OPC_TIEMPO.find(o => o[0] === c.tiempo) || OPC_TIEMPO[0])[1]);
       fila('Texto', (NOMBRES_TEXTO.find(o => o[0] === c.texto) || NOMBRES_TEXTO[0])[1]); fila('Palabras', (NOMBRES_PAL.find(o => o[0] === c.pal) || NOMBRES_PAL[1])[1]);
       fila('Bots', c.bots.length ? c.bots.map(b => (BOT_NIVELES.find(n => n.id === b) || {}).nombre).join(', ') : 'Sin bots'); fila('Tabla visible', c.pausa + ' s');
       cont.append(ul);
@@ -3251,6 +3444,10 @@ const Fiesta = {
     grid.append(campo('Rondas', sel(OPC_RONDAS.map(n => [n, String(n)]), c.rondas, 'rondas', true)));
     grid.append(campo('Tiempo por ronda', sel(OPC_TIEMPO, c.tiempo, 'tiempo', true)));
     grid.append(campo('Texto (carreras y equipos)', sel(NOMBRES_TEXTO, c.texto, 'texto')));
+    grid.append(campo('Dificultad', sel(DIF_OPC, c.dif, 'dif')));
+    grid.append(campo('Equipos (Rojo vs Azul)', sel(SI_NO, c.eq, 'eq')));
+    grid.append(campo('Poderes entre rondas', sel(SI_NO, c.pw, 'pw')));
+    grid.append(campo('Chat de la sala', sel(SI_NO, c.chat, 'chat')));
     grid.append(campo('Palabras (largo)', sel(NOMBRES_PAL, c.pal, 'pal')));
     grid.append(campo('Tabla visible entre rondas', sel(OPC_PAUSA.map(n => [n, n + ' segundos']), c.pausa, 'pausa', true)));
     const bots = nodo('div', 'bots');
@@ -3304,6 +3501,687 @@ $('#fSalir').addEventListener('click', () => Fiesta.salirSala(false));
 $('#fCopCod').addEventListener('click', ev => Fiesta.copiar(Fiesta.codigo, ev.currentTarget));
 $('#fCopLink').addEventListener('click', ev => Fiesta.copiar(Fiesta.link(), ev.currentTarget));
 
+
+
+/* ---------- MULTIJUGADOR 2: equipos, poderes, reacciones y chat ---------- */
+Object.assign(Fiesta, {
+  EQ_NOM: ['Rojo', 'Azul'],
+  barraEquipos(capa, rows, grande) {
+    if (!rows.some(r => r[8] === 0 || r[8] === 1)) return;
+    const t = [0, 0]; for (const r of rows) if (r[8] === 0 || r[8] === 1) t[r[8]] += r[5];
+    const suma = Math.max(1, t[0] + t[1]), caja = nodo('div', 'f-eq' + (grande ? ' grande' : ''));
+    const a = nodo('div', 'f-eq-0', `Rojo ${t[0]}`), b = nodo('div', 'f-eq-1', `Azul ${t[1]}`);
+    a.style.flexGrow = String(Math.max(.15, t[0] / suma)); b.style.flexGrow = String(Math.max(.15, t[1] / suma));
+    caja.append(a, b);
+    if (grande) { const g = t[0] === t[1] ? 'Empate entre equipos' : `Gana el equipo ${t[0] > t[1] ? 'Rojo' : 'Azul'}`; capa.append(caja, nodo('p', 'f-sub', g)); } else capa.append(caja);
+  },
+  panelPoder(capa, e) {
+    const c = this.cfg || this.cfgBase(); if (c.pw !== 'si' || e.n >= e.de) return;
+    const yo = this.miLabel(), r = e.tabla.find(x => x[0] === yo), tipo = r && r[9]; if (!tipo || !PW_INFO[tipo]) return;
+    const caja = nodo('div', 'f-poder'), info = PW_INFO[tipo];
+    caja.append(nodo('span', '', 'Tienes un poder: '), nodo('b', '', info[0]), nodo('span', 'f-poder-d', ' — ' + info[1]));
+    const armado = () => { const l = this.peers.find(p => p.sameTab); const u = l && l.presence && l.presence.pu; return u && num(u.n) === e.n + 1 && u.t === tipo; };
+    const b = nodo('button', 'btn chico', armado() ? 'Poder armado para la siguiente ronda' : 'Usar en la siguiente ronda'); b.type = 'button'; b.disabled = armado();
+    b.addEventListener('click', () => { this.pub({ pu: { n: e.n + 1, t: tipo } }); b.disabled = true; b.textContent = 'Poder armado para la siguiente ronda'; SFX.moneda(); });
+    caja.append(b); capa.append(caja);
+  },
+
+  /* --- reacciones y chat (viajan en la presencia) --- */
+  EMO: ['😂', '🔥', '👏', '😱', '💀', '❤️'],
+  visto: {}, chat: [],
+  iniciarSocial() {
+    if (this.socialListo) return; this.socialListo = true;
+    const bar = nodo('div', 'f-reac'); bar.id = 'fReac'; bar.hidden = true;
+    const tog = nodo('button', 'f-reac-t', '😀'); tog.type = 'button'; tog.setAttribute('aria-label', 'Reacciones'); const fila = nodo('div', 'f-reac-f'); fila.hidden = true;
+    tog.addEventListener('click', () => { fila.hidden = !fila.hidden; });
+    for (const em of this.EMO) { const b = nodo('button', '', em); b.type = 'button'; b.addEventListener('click', () => this.reaccionar(em)); fila.append(b); }
+    bar.append(fila, tog); document.body.append(bar);
+    const flota = nodo('div', 'f-flota'); flota.id = 'fFlota'; flota.setAttribute('aria-hidden', 'true'); document.body.append(flota);
+    const toast = nodo('div', 'f-toast'); toast.id = 'fToast'; toast.hidden = true; toast.setAttribute('role', 'status'); document.body.append(toast);
+    const panel = nodo('section', 'panel f-chat'); panel.id = 'fChatPanel';
+    const form = nodo('form', 'fila'); form.id = 'fChatForm';
+    const inp = nodo('input'); inp.type = 'text'; inp.id = 'fChatIn'; inp.maxLength = 140; inp.autocomplete = 'off'; inp.placeholder = 'Escribe un mensaje'; inp.setAttribute('aria-label', 'Mensaje');
+    const env = nodo('button', 'btn chico', 'Enviar'); env.type = 'submit'; form.append(inp, env);
+    const log = nodo('ul', 'f-chat-log'); log.id = 'fChatLog'; log.setAttribute('aria-live', 'polite');
+    panel.append(nodo('h3', '', 'Chat'), log, form);
+    const jug = $('#fJug').closest('.panel'); jug.append(panel);
+    form.addEventListener('submit', ev => { ev.preventDefault(); const t = txt(inp.value, 140).trim(); if (!t) return; inp.value = ''; this.enviarChat(t); });
+  },
+  chatOn() { return !!this.sala && !this.local && (this.cfg || this.cfgBase()).chat !== 'no'; },
+  reaccionar(em) {
+    if (!this.sala || this.local || !this.EMO.includes(em)) return; const ahora = Date.now(); if (ahora - (this.ultRx || 0) < 700) return; this.ultRx = ahora;
+    this.pub({ rx: { n: ahora, e: em } }); this.flotar(em, 'tú');
+  },
+  flotar(em, quien) {
+    const c = $('#fFlota'); if (!c) return; const d = nodo('div', 'f-fl'); d.style.left = (8 + Math.random() * 80) + '%'; d.append(nodo('span', '', em), nodo('small', '', quien));
+    c.append(d); setTimeout(() => d.remove(), 2600); if (c.children.length > 24) c.firstChild.remove();
+  },
+  enviarChat(t) {
+    if (!this.chatOn()) return; this.pub({ chat: { n: Date.now(), t } }); this.agregarChat('tú', t, true);
+  },
+  agregarChat(quien, t, yo) {
+    this.chat.push([quien, t, !!yo]); if (this.chat.length > 40) this.chat.shift();
+    const log = $('#fChatLog'); if (log) {
+      const li = nodo('li', yo ? 'yo' : ''); li.append(nodo('b', '', quien + ': '), document.createTextNode(t)); log.append(li); while (log.children.length > 40) log.firstChild.remove(); log.scrollTop = log.scrollHeight;
+    }
+    if (!yo && UI.actual === 'arenaJuego') { const tt = $('#fToast'); tt.textContent = `${quien}: ${t}`; tt.hidden = false; clearTimeout(this.tToast); this.tToast = setTimeout(() => { tt.hidden = true; }, 4200); }
+  },
+  leerSociales() {
+    if (!this.sala) return;
+    for (const p of this.gente()) {
+      if (p.sameTab || !p.presence) continue; const pr = p.presence, id = p.peer, nom = txt(pr.alias, 20) || 'Alguien';
+      const rx = pr.rx, ch = pr.chat, vr = this.visto[id + '|rx'], vc = this.visto[id + '|ch'];
+      if (rx && typeof rx === 'object') { const n = num(rx.n); if (vr !== undefined && n !== vr && this.EMO.includes(rx.e)) this.flotar(rx.e, nom); this.visto[id + '|rx'] = n; } else if (vr === undefined) this.visto[id + '|rx'] = 0;
+      if (ch && typeof ch === 'object') { const n = num(ch.n); if (vc !== undefined && n !== vc && this.chatOn()) { const t = txt(ch.t, 140).trim(); if (t) this.agregarChat(nom, t, false); } this.visto[id + '|ch'] = n; } else if (vc === undefined) this.visto[id + '|ch'] = 0;
+    }
+  },
+  pintarSocial() {
+    this.iniciarSocial();
+    const en = !!this.sala && !this.local;
+    $('#fReac').hidden = !en || !(UI.actual === 'fiesta' || UI.actual === 'arenaJuego');
+    $('#fChatPanel').hidden = !this.chatOn();
+  }
+});
+{
+  const alCambiar0 = Fiesta.alCambiar, pintar0 = Fiesta.pintar, salir0 = Fiesta.salirSala;
+  Fiesta.alCambiar = function () { alCambiar0.call(this); this.leerSociales(); this.pintarSocial(); };
+  Fiesta.pintar = function () { pintar0.call(this); this.pintarSocial(); };
+  Fiesta.salirSala = async function (s) { this.visto = {}; this.chat = []; const log = $('#fChatLog'); if (log) log.replaceChildren(); const r = await salir0.call(this, s); this.pintarSocial(); return r; };
+  const vista0 = UI.vista; UI.vista = function (v) { vista0.call(this, v); if (Fiesta.socialListo) Fiesta.pintarSocial(); };
+}
+
+
+/* ---------- JUEGOS NUEVOS DE ACCION (1B) ---------- */
+{
+  const BURLAS = {
+    comp: ['Un bug menos, tres mas', 'Compila de milagro', 'Warning ignorado con exito', 'Funciona en mi maquina', 'Commit heroico'],
+    so: ['Marcada como duplicada de otra', 'Alguien dijo gracias', 'Ya existia esa pregunta', 'Respuesta aceptada', 'Mod enojado derrotado'],
+    teams: ['Camara apagada, victoria', 'Se escucha entrecortado', 'Silencio incomodo evitado', 'Excusa aprobada', 'Que alguien comparta pantalla'],
+    bsod: ['Esquivaste el pantallazo', 'Reinicio evitado', 'Ctrl Alt Supr con estilo', 'Driver actualizado', 'Sin perder el trabajo']
+  };
+  const base = {
+    tipo: 'blancos', etiqueta: 'Humor geek', vidas0: 3, int0: 1.5, intMin: .55, rampa: 60,
+    iniciar() { this.items = []; this.sig = .5; this.vidas = this.vidas0; this.flash = 0; this.fx = []; },
+    spawnear(t) {
+      const s = t / 1000, r = Arena.P.r;
+      while (s >= this.sig) { const g = this.nuevo(r, s); if (g) this.items.push(g); this.sig += Math.max(this.intMin, this.int0 - s / this.rampa); }
+    },
+    actualizar(dt, t, now) {
+      const jugando = Arena.estado === 'juego';
+      if (jugando) this.spawnear(t);
+      for (const g of this.items) {
+        if (!g.vivo) continue; this.mover(g, dt, now);
+        if (this.fuera(g)) { g.vivo = false; if (Arena.lock === g) Arena.lock = null; if (jugando) this.perder(g); }
+      }
+      this.items = this.items.filter(g => g.vivo);
+      if (this.flash > 0) this.flash -= dt;
+    },
+    perder(g) {
+      Arena.combo = 0; this.flash = .45; this.vidas--; SFX.error(); FX.shake = Math.max(FX.shake, 6);
+      FX.texto(this.msgPerdida, Math.min(900, Math.max(100, g.x || 500)), Math.min(440, Math.max(80, g.y || 300)), '#ff9aa8');
+      if (this.vidas <= 0) { Arena.motivo = 'Te quedaste sin vidas'; this.sinVidas = true; }
+    },
+    terminado() { return this.vidas <= 0; },
+    peligro(g) { return this.pel(g); },
+    disparo(g) { tono(520 + g.k * 60, .05, 'triangle', .04); },
+    destruir(g) {
+      g.vivo = false; Arena.combo++;
+      const mult = 1 + Math.min(4, Math.floor(Arena.combo / 3)) * .5, pts = Math.round(g.w.length * 10 * mult * (g.oro ? 3 : 1));
+      Arena.sumar(pts, g.x, g.y - 20);
+      FX.chispas(g.x, g.y, { n: 24, colores: [this.col, '#fff', '#ffd166'], forma: 'r', vel: 260, vida: 1, grav: 240, tam: 4 });
+      SFX.pop(); if (g.oro) SFX.moneda();
+      if (Math.random() < .22) FX.texto(pick(this.burlas), g.x, g.y - 46, '#fff3b0');
+    },
+    hud() { return ['Vidas', '♥'.repeat(Math.max(0, this.vidas)) + ' ×' + (1 + Math.min(4, Math.floor(Arena.combo / 3)) * .5)]; },
+    puntosBot(ch) { return Math.floor(ch / 5.5) * 70; },
+    marco(c) { if (this.flash > 0) { c.save(); c.fillStyle = `rgba(${this.rgbFlash},${Math.min(.5, this.flash)})`; c.fillRect(0, 0, AW, AH); c.restore(); } }
+  };
+  const pal = (arr, s, r) => { const max = s < 15 ? 7 : s < 40 ? 10 : 14, f = arr.filter(w => w.length <= max); return pick(f.length ? f : arr, r); };
+
+  /* 1. Compilador enojado */
+  ARENA.compilador = Object.assign({}, base, {
+    nombre: 'Compilador enojado', dur: 75, col: '#ff5d6c', burlas: BURLAS.comp, msgPerdida: 'Build failed', rgbFlash: '255,60,80',
+    desc: 'Caen errores del compilador. Tecleales el nombre antes de que rompan tu build.',
+    como: 'Teclea la primera letra para apuntar al error y termina la palabra. Si uno llega abajo pierdes una vida; tienes tres.',
+    BANCO: ['nullpointer', 'segfault', 'syntaxerror', 'typeerror', 'undefined', 'stackoverflow', 'memoryleak', 'deadlock', 'timeout', 'forbidden', 'notfound', 'mergeconflict', 'infiniteloop', 'outofbounds', 'cannotread', 'unexpected', 'missingsemi', 'racecondition', 'heisenbug', 'overflow', 'badrequest', 'crash'],
+    nuevo(r, s) { return { w: pal(this.BANCO, s, r), k: 0, vivo: true, x: 90 + r() * 820, y: -20, vy: 38 + s * .9 + r() * 14 }; },
+    mover(g, dt) { g.y += (g.vy || 0) * dt; },
+    fuera(g) { return g.y > AH - 62; },
+    pel(g) { return g.y; },
+    dibujar(c, t, now) {
+      c.fillStyle = '#14161f'; c.fillRect(0, 0, AW, AH);
+      c.fillStyle = '#1d2030'; c.fillRect(0, 0, AW, 34); for (let i = 0; i < 3; i++) { c.fillStyle = ['#ff5f57', '#febc2e', '#28c840'][i]; c.beginPath(); c.arc(20 + i * 22, 17, 6, 0, 7); c.fill(); }
+      c.font = '12px "JetBrains Mono", monospace'; c.fillStyle = '#6b7390'; c.textAlign = 'left'; c.textBaseline = 'middle';
+      for (let i = 0; i < 14; i++) { c.fillStyle = i % 3 ? '#252a3d' : '#2d3350'; c.fillRect(60, 56 + i * 31, 120 + ((i * 97) % 520), 8); c.fillStyle = '#4a5170'; c.fillText(String(i + 1), 24, 60 + i * 31); }
+      c.fillStyle = '#3a1218'; c.fillRect(0, AH - 62, AW, 62); c.fillStyle = '#ff5d6c'; c.fillRect(0, AH - 62, AW, 3);
+      etiqueta(c, 'BUILD FAILED SI LLEGAN AQUI', 500, AH - 30, { size: 16, color: '#ffb3bb', borde: 'rgba(0,0,0,.4)' });
+      for (const g of this.items) {
+        c.font = '700 18px "JetBrains Mono", monospace'; const w = c.measureText(g.w).width + 34;
+        rr(c, g.x - w / 2, g.y - 22, w, 44, 8); c.fillStyle = '#ff5d6c'; c.fill(); c.fillStyle = '#7a1624'; c.fillRect(g.x - w / 2 + 8, g.y - 20, 26, 5);
+        etiqueta(c, 'ERROR', g.x - w / 2 + 52, g.y - 17, { size: 9, borde: 'transparent' });
+      }
+      for (const g of this.items) palabraBlanco(c, g, g.x, g.y + 4);
+      this.marco(c);
+    },
+    demo() { this.items = [{ w: 'segfault', k: 3, vivo: true, x: 300, y: 130, vy: 0 }, { w: 'undefined', k: 0, vivo: true, x: 620, y: 220, vy: 0 }, { w: 'deadlock', k: 0, vivo: true, x: 820, y: 90, vy: 0 }]; Arena.lock = this.items[0]; }
+  });
+
+  /* 2. Stack Overflow Panic */
+  ARENA.stackoverflow = Object.assign({}, base, {
+    nombre: 'Stack Overflow Panic', dur: 75, col: '#f48024', burlas: BURLAS.so, msgPerdida: 'Duplicada', rgbFlash: '244,128,36',
+    desc: 'Preguntas desesperadas cruzan el foro. Contestalas antes de que las marquen como duplicadas.',
+    como: 'Teclea la primera letra de la pregunta y termina la palabra. Las doradas son respuestas aceptadas y valen el triple. Tres duplicadas y se acaba.',
+    BANCO: ['duplicado', 'cerrada', 'offtopic', 'urgente', 'ayuda', 'nofunciona', 'gracias', 'porfavor', 'ejemplo', 'comentario', 'downvote', 'upvote', 'copiar', 'pegar', 'funciona', 'google', 'tutorial', 'respuesta', 'pregunta', 'moderador', 'etiqueta', 'reputacion'],
+    nuevo(r, s) { const oro = r() < .08; return { w: oro ? 'aceptada' : pal(this.BANCO, s, r), k: 0, vivo: true, oro, x: AW + 90, y: 80 + Math.floor(r() * 5) * 78, vx: -(52 + s * 1.1 + r() * 12) }; },
+    mover(g, dt) { g.x += (g.vx || 0) * dt; },
+    fuera(g) { return g.x < -110; },
+    pel(g) { return -g.x; },
+    dibujar(c, t, now) {
+      c.fillStyle = '#f8f9f9'; c.fillRect(0, 0, AW, AH); c.fillStyle = '#f48024'; c.fillRect(0, 0, AW, 5);
+      c.fillStyle = '#232629'; c.fillRect(0, 5, AW, 38); etiqueta(c, 'stack overflow (casi)', 90, 24, { size: 14, color: '#f48024', borde: 'transparent' });
+      c.fillStyle = '#eceff1'; for (let i = 0; i < 5; i++) c.fillRect(0, 80 + i * 78 + 34, AW, 2);
+      c.fillStyle = 'rgba(230,60,60,.18)'; c.fillRect(0, 43, 70, AH - 43); etiqueta(c, 'DUPLICADA', 35, AH / 2, { size: 14, color: '#d33', borde: 'transparent' });
+      for (const g of this.items) {
+        c.font = '700 18px "JetBrains Mono", monospace'; const w = c.measureText(g.w).width + 70;
+        rr(c, g.x - w / 2, g.y - 26, w, 52, 8); c.fillStyle = g.oro ? '#e6f7ec' : '#fff'; c.fill(); c.lineWidth = 2; c.strokeStyle = g.oro ? '#2f9e5a' : '#d6d9dc'; c.stroke();
+        c.fillStyle = g.oro ? '#2f9e5a' : '#f48024'; c.fillRect(g.x - w / 2 + 6, g.y - 18, 22, 36); etiqueta(c, g.oro ? '✓' : '?', g.x - w / 2 + 17, g.y, { size: 16, borde: 'transparent' });
+      }
+      for (const g of this.items) palabraBlanco(c, g, g.x + 12, g.y);
+      this.marco(c);
+    },
+    demo() { this.items = [{ w: 'urgente', k: 3, vivo: true, x: 300, y: 150, vx: 0 }, { w: 'duplicado', k: 0, vivo: true, x: 620, y: 230, vx: 0 }, { w: 'aceptada', k: 0, vivo: true, oro: true, x: 820, y: 310, vx: 0 }]; Arena.lock = this.items[0]; }
+  });
+
+  /* 3. Reunion de Teams */
+  ARENA.teams = Object.assign({}, base, {
+    nombre: 'Reunión de Teams', dur: 75, col: '#7b83eb', burlas: BURLAS.teams, msgPerdida: 'Prende la camara', rgbFlash: '90,100,220', int0: 1.6,
+    desc: 'Te piden prender la cámara. Teclea excusas antes de que se acabe el tiempo.',
+    como: 'Cada cuadro de la reunion tiene una excusa y un reloj. Teclea la excusa antes de que se acabe o pierdes una vida.',
+    BANCO: ['sinwifi', 'microfono', 'muteado', 'camara', 'lagueo', 'reiniciando', 'mihijo', 'audioroto', 'bateria', 'actualizando', 'congelado', 'cortando', 'internet', 'pantalla', 'reunion', 'correo', 'entrando', 'esperando', 'perrito', 'cargador', 'zoom'],
+    SLOTS: Array.from({ length: 9 }, (_, i) => ({ x: 190 + (i % 3) * 310, y: 120 + Math.floor(i / 3) * 140 })),
+    nuevo(r, s) {
+      const libres = this.SLOTS.map((p, i) => i).filter(i => !this.items.some(g => g.slot === i)); if (!libres.length) return null;
+      const i = pick(libres, r), p = this.SLOTS[i], vida = Math.max(3.6, 7.2 - s / 18);
+      return { w: pal(this.BANCO, s, r), k: 0, vivo: true, slot: i, x: p.x, y: p.y, vida, max: vida, av: Math.floor(r() * 5) };
+    },
+    mover(g, dt) { g.vida -= dt; },
+    fuera(g) { return g.vida <= 0; },
+    pel(g) { return -g.vida; },
+    dibujar(c, t, now) {
+      c.fillStyle = '#1f2037'; c.fillRect(0, 0, AW, AH); c.fillStyle = '#2b2d4f'; c.fillRect(0, 0, AW, 34); etiqueta(c, 'Reunion semanal (obligatoria)', 140, 17, { size: 14, color: '#c9ccff', borde: 'transparent' });
+      c.fillStyle = '#2b2d4f'; c.fillRect(0, AH - 50, AW, 50); c.fillStyle = '#d6445a'; rr(c, 440, AH - 40, 120, 30, 15); c.fill(); etiqueta(c, 'SALIR', 500, AH - 25, { size: 13, borde: 'transparent' });
+      const cols = ['#e8a87c', '#c38d9e', '#85dcb8', '#8ab6f9', '#f6d365'];
+      for (const p of this.SLOTS) { rr(c, p.x - 140, p.y - 60, 280, 120, 12); c.fillStyle = '#2e3158'; c.fill(); }
+      for (const g of this.items) {
+        const x = g.x, y = g.y; rr(c, x - 140, y - 60, 280, 120, 12); c.fillStyle = '#3a3e72'; c.fill();
+        c.fillStyle = cols[g.av]; c.beginPath(); c.arc(x - 90, y - 8, 22, 0, 7); c.fill(); c.beginPath(); c.arc(x - 90, y + 48, 32, Math.PI, 0); c.fill();
+        const f = Math.max(0, g.vida / g.max); c.fillStyle = f > .35 ? '#6ee7a1' : '#ff6b7a'; c.fillRect(x - 140, y + 54, 280 * f, 6);
+        etiqueta(c, '¿Camara?', x + 50, y - 44, { size: 12, color: '#c9ccff', borde: 'transparent' });
+      }
+      for (const g of this.items) palabraBlanco(c, g, g.x + 50, g.y + 10);
+      this.marco(c);
+    },
+    demo() { this.items = [{ w: 'sinwifi', k: 3, vivo: true, slot: 0, x: 190, y: 120, vida: 5, max: 7, av: 0 }, { w: 'mihijo', k: 0, vivo: true, slot: 1, x: 500, y: 120, vida: 4, max: 7, av: 2 }, { w: 'perrito', k: 0, vivo: true, slot: 5, x: 810, y: 260, vida: 6, max: 7, av: 3 }]; Arena.lock = this.items[0]; }
+  });
+
+  /* 4. Blue Screen Runner */
+  ARENA.bluescreen = Object.assign({}, base, {
+    nombre: 'Blue Screen Runner', dur: 75, col: '#4aa3ff', burlas: BURLAS.bsod, msgPerdida: 'Pantallazo azul', rgbFlash: '20,80,200', vidas0: 3,
+    desc: 'Corres por el pasillo del servidor. Cada obstaculo es una palabra; si te alcanza, pantallazo azul.',
+    como: 'Teclea la palabra del obstaculo mas cercano antes de que te alcance. Cada golpe cuesta una vida.',
+    BANCO: ['kernel', 'driver', 'memoria', 'registro', 'fatal', 'paginado', 'sistema', 'cargando', 'disco', 'parche', 'apagado', 'reinicio', 'bios', 'arranque', 'hibernar', 'antivirus', 'formatear', 'defrag', 'pantalla', 'cache', 'ventilador'],
+    nuevo(r, s) { return { w: pal(this.BANCO, s, r), k: 0, vivo: true, x: AW + 70, y: 372, vx: -(95 + s * 2 + r() * 20), alt: 30 + Math.floor(r() * 3) * 14 }; },
+    mover(g, dt) { g.x += (g.vx || 0) * dt; },
+    fuera(g) { return g.x < 170; },
+    pel(g) { return -g.x; },
+    dibujar(c, t, now) {
+      const gr = c.createLinearGradient(0, 0, 0, AH); gr.addColorStop(0, '#0a1a4a'); gr.addColorStop(1, '#16367c'); c.fillStyle = gr; c.fillRect(0, 0, AW, AH);
+      for (let i = 0; i < 9; i++) { const x = ((i * 130 - now / 6) % (AW + 130) + AW + 130) % (AW + 130) - 60; c.fillStyle = '#0e2766'; c.fillRect(x, 90, 70, 250); c.fillStyle = '#4aa3ff'; for (let k = 0; k < 6; k++) c.fillRect(x + 10, 105 + k * 38, 6, 6); }
+      c.fillStyle = '#081330'; c.fillRect(0, 400, AW, AH - 400); c.fillStyle = '#4aa3ff'; c.fillRect(0, 400, AW, 3);
+      for (let i = 0; i < 20; i++) { const x = ((i * 60 - now / 3) % (AW + 60) + AW + 60) % (AW + 60) - 30; c.fillRect(x, 440, 28, 3); }
+      etiqueta(c, ':(', 90, 70, { size: 56, borde: 'transparent' });
+      const px = 120, bob = Math.sin(now / 90) * 4, py = 372 + bob; c.strokeStyle = '#fff'; c.lineWidth = 5; c.lineCap = 'round';
+      c.beginPath(); c.arc(px, py - 52, 12, 0, 7); c.moveTo(px, py - 40); c.lineTo(px, py - 8); c.moveTo(px, py - 30); c.lineTo(px + 18 * Math.sin(now / 90), py - 16); c.moveTo(px, py - 8); c.lineTo(px - 14 * Math.sin(now / 90), py + 22); c.moveTo(px, py - 8); c.lineTo(px + 14 * Math.sin(now / 90), py + 22); c.stroke();
+      for (const g of this.items) { rr(c, g.x - 26, 372 - 44, 52, 56, 6); c.fillStyle = '#ff5d6c'; c.fill(); etiqueta(c, '!', g.x, 354, { size: 26, borde: 'transparent' }); }
+      for (const g of this.items) palabraBlanco(c, g, g.x, 300 - (g.alt || 0) + 30);
+      this.marco(c);
+    },
+    demo() { this.items = [{ w: 'kernel', k: 3, vivo: true, x: 380, y: 372, vx: 0, alt: 30 }, { w: 'driver', k: 0, vivo: true, x: 640, y: 372, vx: 0, alt: 44 }, { w: 'memoria', k: 0, vivo: true, x: 860, y: 372, vx: 0, alt: 58 }]; Arena.lock = this.items[0]; }
+  });
+  ARENA_ORDEN.push('compilador', 'stackoverflow', 'teams', 'bluescreen');
+}
+
+
+/* ---------- TRIVIAS TECLEADAS (1C) ---------- */
+{
+  const QA = {
+    quien: [
+      ['El ninja hiperactivo que sueña con ser Hokage', 'naruto'], ['El rival oscuro de Naruto que se fue con Orochimaru', 'sasuke'], ['El sensei que siempre llega tarde y lee un libro raro', 'kakashi'],
+      ['El heroe sin poder que hereda el One For All', 'deku'], ['El numero uno rubio explosivo de la academia heroica', 'bakugo'], ['El heroe simbolo de la paz con sonrisa gigante', 'allmight'],
+      ['El joven que reencarna sin trabajo en otro mundo', 'rudeus'], ['El rematador bajito con mucho salto en Haikyuu', 'hinata'], ['El armador genial que sirve pases perfectos', 'kageyama'],
+      ['El humano que va con su perro magico por la Tierra de Ooo', 'finn'], ['El perro amarillo que estira todo el cuerpo', 'jake'], ['La reina vampira de los mil anos que ama el bajo electrico', 'marceline'],
+      ['El chico mitad gema con un escudo en forma de rosa', 'steven'], ['La heroina de lunares con yoyo y mala suerte', 'ladybug'], ['El gato negro que destruye con una sola palabra', 'catnoir'],
+      ['La madre de dragones que nunca se quema', 'daenerys'], ['El bastardo vestido de negro que no sabe nada', 'jonsnow'], ['El enano ingenioso que bebe y sabe cosas', 'tyrion'],
+      ['El profesor de quimica que cambia de nombre', 'heisenberg'], ['La serie donde unos ninos enfrentan monstruos del mundo del reves', 'stranger'], ['El jefe de la oficina que se cree gracioso', 'michael'],
+      ['El escarabajo humano de traje rojo con mucho ingenio y telarana', 'spiderman'], ['El ogro verde que vive en un pantano', 'shrek'], ['El vaquero del juguete y su mejor amigo astronauta', 'woody'],
+      ['El elegido que descubre que su mundo era una simulacion', 'neo'], ['El mago de la cicatriz con forma de rayo', 'harry'], ['El hobbit que carga un anillo hasta el volcan', 'frodo'],
+      ['El joven musico que viaja al mundo de los muertos', 'miguel'], ['El heroe de armadura roja y dorada que se sacrifica con un chasquido', 'ironman'], ['El caballero oscuro de Gotham', 'batman']
+    ],
+    spoiler: [
+      ['En Hora de Aventura, Finn va con su perro ____', 'jake'], ['Steven Universe es mitad humano y mitad ____', 'gema'], ['Naruto sella dentro de si a un zorro de nueve ____', 'colas'],
+      ['El Rey de la Noche llega del ____ en Juego de Tronos', 'norte'], ['En Breaking Bad el profesor vende metanfetamina de color ____', 'azul'], ['En Stranger Things el mundo paralelo se llama el Upside ____', 'down'],
+      ['En El Juego del Calamar los participantes juegan por mucho ____', 'dinero'], ['En La Casa de Papel los ladrones usan mascaras de ____', 'dali'], ['Hinata y Kageyama hacen un ataque ____', 'rapido'],
+      ['Deku hereda un poder llamado One For ____', 'all'], ['En Miraculous, Ladybug usa un yoyo y una ____', 'suerte'], ['En Matrix, Neo elige la pastilla ____', 'roja'],
+      ['Shrek se enamora de la princesa ____', 'fiona'], ['En Toy Story, Buzz cree que puede ____', 'volar'], ['Harry Potter viaja a Hogwarts en un ____', 'tren'],
+      ['En Avengers, Thanos busca las gemas del ____', 'infinito'], ['En Titanic el barco choca contra un ____', 'iceberg'], ['En Coco, Miguel quiere tocar la ____', 'guitarra'],
+      ['En Star Wars, Luke usa un sable de ____', 'luz'], ['En Mushoku Tensei, Rudeus renace en otro ____', 'mundo'], ['En The Office, Michael dirige la sucursal de ____', 'scranton'],
+      ['El heroe de Hora de Aventura salva a la princesa ____', 'chicle'], ['En Juego de Tronos, todos quieren el Trono de ____', 'hierro'], ['En Friends, la cafeteria se llama Central ____', 'perk'],
+      ['En Batman, el villano payaso es el ____', 'joker'], ['En El Senor de los Anillos hay que destruir el Anillo ____', 'unico']
+    ],
+    sistemas: [
+      ['Dos procesos esperan uno al otro para siempre', 'deadlock'], ['La parte central del sistema operativo', 'kernel'], ['Una unidad de ejecucion dentro de un proceso', 'hilo'],
+      ['Mecanismo que permite acceso exclusivo a un recurso compartido', 'mutex'], ['Memoria rapida que guarda lo usado hace poco', 'cache'], ['Estructura donde lo ultimo en entrar es lo primero en salir', 'pila'],
+      ['Estructura donde lo primero en entrar es lo primero en salir', 'cola'], ['Funcion que se llama a si misma', 'recursion'], ['Traduce todo el codigo antes de ejecutarlo', 'compilador'],
+      ['Ejecuta el codigo linea por linea', 'interprete'], ['Error en un programa', 'bug'], ['Foto del estado del codigo guardada en git', 'commit'],
+      ['Linea paralela de trabajo en git', 'branch'], ['Une dos ramas de un repositorio', 'merge'], ['Filtra el trafico de red permitido', 'firewall'],
+      ['Direcciona paquetes entre redes', 'router'], ['Traduce nombres de dominio a direcciones IP', 'dns'], ['Memoria temporal y veloz del equipo', 'ram'],
+      ['Lenguaje para consultar bases de datos', 'sql'], ['Conjunto de reglas para que dos programas se hablen', 'api'], ['Formato de texto ligero para intercambiar datos', 'json'],
+      ['Estructura que repite instrucciones', 'bucle'], ['Contenedor con nombre para guardar un valor', 'variable'], ['Proceso de buscar y corregir errores', 'debug'],
+      ['Contrasena convertida en un resumen irreversible', 'hash'], ['Contador que controla el acceso a recursos', 'semaforo'], ['Programa en ejecucion', 'proceso'],
+      ['Falta de memoria por paginas que van y vienen sin parar', 'thrashing'], ['Planificador que da turnos iguales a cada proceso', 'roundrobin'], ['Sistema operativo libre con pinguino', 'linux']
+    ]
+  };
+  for (const k of Object.keys(QA)) for (const e of QA[k]) e[0] = quitarAcentos(e[0]);
+  const ENFA = { quien: '#ffb347', spoiler: '#ff6b81', sistemas: '#4aa3ff' };
+  function lineas(c, txt, maxW) {
+    const ps = txt.split(' '), out = []; let l = '';
+    for (const p of ps) { const t = l ? l + ' ' + p : p; if (c.measureText(t).width > maxW && l) { out.push(l); l = p; } else l = t; }
+    if (l) out.push(l); return out;
+  }
+  function crear(id, o) {
+    const banco = QA[id];
+    ARENA[o.id] = {
+      nombre: o.nombre, tipo: 'blancos', dur: 75, etiqueta: 'Trivia', desc: o.desc, como: o.como, col: o.col,
+      iniciar() { this.items = []; this.vidas = 3; this.flash = 0; this.fcol = '0,0,0'; this.usadas = []; this.nuevaP(); },
+      nuevaP() {
+        const r = Arena.P.r; let i; let n = 0;
+        do { i = Math.floor(r() * banco.length); n++; } while (this.usadas.includes(i) && n < 30);
+        this.usadas.push(i); if (this.usadas.length > banco.length - 4) this.usadas.shift();
+        const [q, a] = banco[i], usados = new Set([a[0]]), opts = [{ w: a, ok: true }];
+        const pool = banco.map(e => e[1]).filter(w => w !== a); let g = 0;
+        while (opts.length < 3 && g++ < 60) { const w = pick(pool, r); if (!usados.has(w[0]) && !opts.some(x => x.w === w)) { usados.add(w[0]); opts.push({ w, ok: false }); } }
+        while (opts.length < 3) { const w = pick(pool, r); if (!opts.some(x => x.w === w)) opts.push({ w, ok: false }); }
+        for (let k = opts.length - 1; k > 0; k--) { const j = Math.floor(r() * (k + 1)); [opts[k], opts[j]] = [opts[j], opts[k]]; }
+        this.q = q; this.tq = this.tmax = 11; this.nq = (this.nq || 0) + 1;
+        this.items = opts.map((x, k) => ({ w: x.w, ok: x.ok, k: 0, vivo: true, x: 190 + k * 310, y: 380 }));
+        Arena.lock = null;
+      },
+      actualizar(dt) {
+        if (Arena.estado === 'juego') { this.tq -= dt; if (this.tq <= 0) { this.fallar('Se acabo el tiempo'); } }
+        if (this.flash > 0) this.flash -= dt;
+      },
+      fallar(msg, it) {
+        Arena.combo = 0; this.vidas--; this.flash = .5; this.fcol = '255,60,80'; SFX.error(); FX.shake = Math.max(FX.shake, 5);
+        FX.texto(msg, 500, 250, '#ff9aa8');
+        if (this.vidas <= 0) { Arena.motivo = 'Te quedaste sin vidas'; return; }
+        this.nuevaP();
+      },
+      terminado() { return this.vidas <= 0; },
+      peligro() { return 0 },
+      disparo(it) { tono(500 + it.k * 60, .05, 'triangle', .04); },
+      destruir(it) {
+        it.vivo = false;
+        if (!it.ok) { this.fallar('Esa no era: ' + (this.items.find(x => x.ok) || {}).w, it); return; }
+        Arena.combo++; const mult = 1 + Math.min(4, Math.floor(Arena.combo / 2)) * .5, bono = Math.max(0, Math.round(this.tq)) * 4;
+        const pts = Math.round(it.w.length * 10 * mult + bono); Arena.sumar(pts, it.x, it.y - 30);
+        this.flash = .3; this.fcol = '60,200,120'; SFX.moneda(); FX.chispas(it.x, it.y, { n: 26, colores: [this.col, '#fff', '#ffd166', '#06d6a0'], forma: 'r', vel: 280, vida: 1, grav: 240, tam: 4 });
+        this.nuevaP();
+      },
+      hud() { return ['Vidas', '♥'.repeat(Math.max(0, this.vidas)) + ' ×' + (1 + Math.min(4, Math.floor(Arena.combo / 2)) * .5)]; },
+      puntosBot(ch) { return Math.floor(ch / 6) * 80; },
+      dibujar(c, t, now) {
+        const g = c.createLinearGradient(0, 0, 0, AH); g.addColorStop(0, '#1e1b3a'); g.addColorStop(1, '#3b2f63'); c.fillStyle = g; c.fillRect(0, 0, AW, AH);
+        for (let i = 0; i < 24; i++) { c.fillStyle = 'rgba(255,255,255,.12)'; c.beginPath(); c.arc((i * 137 + now / 25) % AW, (i * 71) % AH, 1.5 + (i % 3), 0, 7); c.fill(); }
+        etiqueta(c, o.cab, 500, 36, { size: 15, color: this.col, borde: 'transparent' });
+        rr(c, 70, 70, 860, 190, 18); c.fillStyle = 'rgba(255,255,255,.95)'; c.fill(); c.lineWidth = 4; c.strokeStyle = this.col; c.stroke();
+        c.font = '700 30px "Atkinson Hyperlegible", sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillStyle = '#1e2026';
+        const ls = lineas(c, this.q || '', 780), y0 = 165 - (ls.length - 1) * 20; ls.forEach((l, i) => c.fillText(l, 500, y0 + i * 40));
+        const f = Math.max(0, this.tq / this.tmax); c.fillStyle = 'rgba(255,255,255,.2)'; rr(c, 70, 285, 860, 12, 6); c.fill(); c.fillStyle = f > .35 ? this.col : '#ff5d6c'; rr(c, 70, 285, Math.max(8, 860 * f), 12, 6); c.fill();
+        for (const it of this.items) { rr(c, it.x - 130, it.y - 44, 260, 88, 14); c.fillStyle = it === Arena.lock ? '#fff3c4' : 'rgba(255,255,255,.12)'; c.fill(); c.lineWidth = 2; c.strokeStyle = it === Arena.lock ? '#f2a516' : 'rgba(255,255,255,.35)'; c.stroke(); }
+        for (const it of this.items) palabraBlanco(c, it, it.x, it.y);
+        if (this.flash > 0) { c.fillStyle = `rgba(${this.fcol},${Math.min(.35, this.flash)})`; c.fillRect(0, 0, AW, AH); }
+      },
+      demo() { this.q = o.demoQ; this.tq = 8; this.tmax = 11; this.items = o.demoO.map((w, k) => ({ w, k: k === 0 ? 2 : 0, vivo: true, ok: k === 0, x: 190 + k * 310, y: 380 })); Arena.lock = this.items[0]; this.vidas = 3; this.usadas = []; }
+    };
+    ARENA_ORDEN.push(o.id);
+  }
+  crear('quien', { id: 'quienquien', nombre: 'Quién dijo qué', col: ENFA.quien, cab: 'ADIVINA AL PERSONAJE', desc: 'Te describen a un personaje de anime, series o peliculas. Teclea su nombre antes de que se acabe el tiempo.', como: 'Lee la pista y teclea la respuesta correcta entre las tres. Si te equivocas o se acaba el tiempo pierdes una vida; los aciertos seguidos suben el combo.', demoQ: 'El ninja hiperactivo que sueña con ser Hokage', demoO: ['naruto', 'sasuke', 'kakashi'] });
+  crear('spoiler', { id: 'spoiler', nombre: 'Spoiler Alert', col: ENFA.spoiler, cab: 'COMPLETA ANTES DEL SPOILER', desc: 'Completa la frase de la serie o pelicula antes de que te arruinen el final.', como: 'Teclea la palabra que falta entre las tres opciones. Cada error o tiempo agotado cuesta una vida.', demoQ: 'En Hora de Aventura, Finn va con su perro ____', demoO: ['jake', 'norte', 'azul'] });
+  crear('sistemas', { id: 'soquiz', nombre: 'SO Quiz', col: ENFA.sistemas, cab: 'SISTEMAS Y PROGRAMACION', desc: 'Define conceptos de sistemas operativos y programacion tecleando la respuesta correcta.', como: 'Lee la definicion y teclea el termino correcto entre las tres opciones. Cada error o tiempo agotado cuesta una vida.', demoQ: 'Dos procesos esperan uno al otro para siempre', demoO: ['deadlock', 'kernel', 'mutex'] });
+}
+
+
+/* ---------- DUELOS (1D) ---------- */
+{
+  const MEMES = [
+    'Cuando el profe dice que el examen es facil y tu ya sabes que no',
+    'Yo prometiendo dormir temprano mientras veo otro capitulo mas',
+    'Mi codigo funciona pero no tengo idea de por que y mejor no lo toco',
+    'Cuando la reunion pudo ser un correo y dura dos horas',
+    'Tu entregando el proyecto a las once cincuenta y nueve con cara de calma',
+    'Cuando el protagonista dice que no se rendira y le quedan cinco minutos de episodio',
+    'El wifi de la casa justo cuando empieza la partida importante',
+    'Yo diciendo que es el ultimo bug y el sistema encontrando otros tres',
+    'Cuando aparece el villano y todos olvidan que tenian un plan',
+    'Mi cerebro a las tres de la manana recordando algo que dije en el dos mil dieciocho',
+    'Cuando dices que lo haces luego y luego es el dia de la entrega',
+    'Tu cuando sale la temporada nueva y ya olvidaste toda la historia',
+    'El que dijo que programar es facil nunca vio un error sin mensaje',
+    'Cuando el servidor se cae y todos miran al que hizo el ultimo cambio',
+    'Yo revisando mi telefono para ver una hora y salir una hora despues',
+    'Cuando el final de la serie es un abrazo y una cancion y ya',
+    'Mi plan de estudio versus mi plan real de estudio',
+    'Cuando alguien pregunta si guardaste y tu cierras sin guardar'
+  ].map(quitarAcentos);
+  const CMDS = ['sudo apt update', 'git push origin main', 'git commit mensaje arreglo final', 'ping servidor', 'ssh admin servidor', 'chmod 777 todo', 'cd proyecto', 'ls la', 'grep error registro', 'npm install todo', 'kill 9 proceso', 'python3 hackear', 'sudo reboot', 'nano config', 'cat secretos', 'git status', 'git pull', 'docker compose up', 'tail registro', 'whoami', 'clear', 'exit'];
+  const TAUNTS = ['Esto es solo mi forma base', 'Entrenaste tres años y yo tengo un flashback mejor', 'Mi poder esta por encima de nueve mil quejas', 'Ninguno de ustedes tiene un discurso suficiente', 'No me interrumpas, estoy en mitad de mi monologo', 'Otra vez el poder de la amistad, que original', 'Les doy tiempo para que se transformen', 'Aun me falta la forma final'].map(quitarAcentos);
+  const textoUnion = (arr, r, min, sep = ' ') => { const l = barajar(arr, r); let t = '', i = 0; while (t.length < min) { t += (t ? sep : '') + l[i % l.length]; i++; } return t; };
+
+  /* 1. Boss de Anime (cooperativo) */
+  ARENA.bossanime = {
+    nombre: 'Boss de Anime', tipo: 'texto', dur: 80, largo: 1600, etiqueta: 'Cooperativo', col: '#ff5d6c',
+    desc: 'Todos contra el jefe final de un anime. Cada letra es un golpe y cada palabra, un ataque especial.',
+    como: 'Escribe sin parar. El daño de todo el equipo se suma y el jefe se burla entre golpes. Tienen 80 segundos.',
+    iniciar() { this.pal = {}; this.proy = []; this.golpe = 0; this.vencido = false; this.hablo = 0; this.frase = 0; },
+    hpMax() { return 240 * Math.max(1, Arena.parts.length); },
+    daño() { return Arena.parts.reduce((a, p) => a + p.chars, 0); },
+    terminado() { return this.daño() >= this.hpMax(); },
+    actualizar(dt, t, now) {
+      Arena.parts.forEach((p, i) => {
+        const pal = Math.floor(p.chars / 6);
+        if (pal > (this.pal[p.id] || 0)) { this.pal[p.id] = pal; this.proy.push({ x: 140, y: 250 + (i % 4) * 36, tx: 690 + Math.random() * 90, ty: 200 + Math.random() * 90, t: 0, col: p.color }); }
+      });
+      for (const b of this.proy) { b.t += dt * 2; if (b.t >= 1 && !b.hit) { b.hit = true; FX.chispas(b.tx, b.ty, { n: 12, colores: ['#ffd166', '#ff5d6c', '#fff'] }); this.golpe = now; if (Arena.estado === 'juego') SFX.golpe(); } }
+      this.proy = this.proy.filter(b => b.t < 1.05);
+      if (!this.vencido && this.terminado()) { this.vencido = true; SFX.fanfarria(); FX.chispas(740, 240, { n: 90, colores: ['#ef476f', '#ffd166', '#06d6a0', '#118ab2', '#fff'], forma: 'r', vel: 420, vida: 1.8, grav: 280, tam: 5 }); }
+      if (!this.vencido && Arena.estado === 'juego' && now - this.hablo > 6000) { this.hablo = now; this.frase = (this.frase + 1) % TAUNTS.length; }
+    },
+    dibujar(c, t, now) {
+      cielo(c, '#2a0a2e', '#8c1d40'); estrellas(c, now);
+      for (let i = 0; i < 18; i++) { const a = i / 18 * 6.28 + now / 4000; c.strokeStyle = 'rgba(255,255,255,.07)'; c.lineWidth = 14; c.beginPath(); c.moveTo(740, 230); c.lineTo(740 + Math.cos(a) * 900, 230 + Math.sin(a) * 900); c.stroke(); }
+      c.fillStyle = '#1a0a1c'; c.fillRect(0, 410, AW, 110); c.fillStyle = '#ff5d6c'; c.fillRect(0, 410, AW, 3);
+      const f = Math.max(0, 1 - this.daño() / this.hpMax()), caida = this.vencido ? 1 : 0, sh = (now - this.golpe < 120) ? 6 : 0;
+      c.save(); c.translate(740 + (sh ? (Math.random() - .5) * sh : 0), 250 + (caida ? 70 : 0) + Math.sin(now / 400) * 4); if (caida) c.rotate(1.2);
+      for (let r = 0; r < 3; r++) { c.strokeStyle = `rgba(255,93,108,${.35 - r * .1})`; c.lineWidth = 5; c.beginPath(); c.ellipse(0, -20, 90 + r * 24 + Math.sin(now / 200 + r) * 4, 130 + r * 22, 0, 0, 7); c.stroke(); }
+      c.fillStyle = '#12091a'; c.beginPath(); c.moveTo(-60, 150); c.lineTo(-50, 20); c.lineTo(0, -30); c.lineTo(50, 20); c.lineTo(60, 150); c.fill();
+      c.beginPath(); c.arc(0, -50, 38, 0, 7); c.fill(); for (let i = -3; i <= 3; i++) { c.beginPath(); c.moveTo(i * 12 - 6, -78); c.lineTo(i * 14, -125 - Math.abs(i) * -6 - (i % 2 ? 10 : 0)); c.lineTo(i * 12 + 8, -78); c.fill(); }
+      c.fillStyle = caida ? '#555' : '#ff3355'; c.beginPath(); c.moveTo(-26, -56); c.lineTo(-8, -50); c.lineTo(-26, -46); c.fill(); c.beginPath(); c.moveTo(26, -56); c.lineTo(8, -50); c.lineTo(26, -46); c.fill();
+      c.restore();
+      Arena.parts.forEach((p, i) => { const y = 330 + (i % 4) * 22, x = 90 + Math.floor(i / 4) * 44 + (i % 2) * 22; c.strokeStyle = '#eee'; c.lineWidth = 4; c.lineCap = 'round'; c.beginPath(); c.moveTo(x, y - 30); c.lineTo(x, y); c.moveTo(x, y); c.lineTo(x - 7, y + 18); c.moveTo(x, y); c.lineTo(x + 7, y + 18); c.moveTo(x, y - 22); c.lineTo(x + 16, y - 26); c.stroke(); c.fillStyle = '#f1c27d'; c.beginPath(); c.arc(x, y - 38, 8, 0, 7); c.fill(); c.fillStyle = p.color; c.fillRect(x - 9, y - 44, 18, 4); });
+      for (const b of this.proy) { const k = Math.min(1, b.t), x = b.x + (b.tx - b.x) * k, y = b.y + (b.ty - b.y) * k - Math.sin(k * Math.PI) * 40; c.fillStyle = b.col; c.beginPath(); c.arc(x, y, 9, 0, 7); c.fill(); c.fillStyle = '#fff'; c.beginPath(); c.arc(x, y, 4, 0, 7); c.fill(); }
+      rr(c, 380, 28, 480, 18, 9); c.fillStyle = 'rgba(0,0,0,.4)'; c.fill(); c.fillStyle = f > .3 ? '#ff5d6c' : '#ffb703'; rr(c, 380, 28, Math.max(10, 480 * f), 18, 9); c.fill();
+      etiqueta(c, 'JEFE FINAL', 330, 37, { size: 14, align: 'right' });
+      if (!this.vencido) { c.font = '700 17px "Atkinson Hyperlegible", sans-serif'; const w = c.measureText(TAUNTS[this.frase]).width + 30; rr(c, 740 - w / 2, 70, w, 36, 12); c.fillStyle = 'rgba(255,255,255,.95)'; c.fill(); c.fillStyle = '#1e2026'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(TAUNTS[this.frase], 740, 89); }
+      else etiqueta(c, 'Imposible, esto no estaba en el guion', 740, 90, { size: 18 });
+    },
+    hud() { return ['Jefe', Math.max(0, Math.round(100 * (1 - this.daño() / this.hpMax()))) + '%']; },
+    orden(ps) { return ps.slice().sort((a, b) => b.chars - a.chars); },
+    valor(p) { return `${p.chars} de daño`; },
+    titulo() { return this.vencido ? '¡Derrotaron al jefe!' : 'El jefe alcanzo su forma final'; },
+    gane() { return this.vencido; },
+    puntosFinales(yo) { return yo.chars * 2 + (this.vencido ? 250 : 0); },
+    puntosBot(ch) { return ch * 2; }
+  };
+
+  /* 2. Terminal Hacker (carrera) */
+  ARENA.terminal = {
+    nombre: 'Terminal Hacker', tipo: 'texto', carrera: true, dur: 140, largo: 210, etiqueta: 'Carreras', col: '#39ff88',
+    desc: 'Una carrera de hackers: teclea comandos reales y llega primero al acceso del servidor.',
+    como: 'Escribe la linea de comandos de abajo. Si fallas, tu conexion se corta hasta que teclees la letra correcta. Gana quien llegue primero.',
+    textoPropio(r, largo) { return textoUnion(CMDS, r, largo); },
+    iniciar() { this.vis = {}; },
+    actualizar(dt) { const len = Arena.P.texto.length; for (const p of Arena.parts) { const o = Math.min(1, p.chars / len), v = this.vis[p.id] || 0; this.vis[p.id] = v + (o - v) * Math.min(1, dt * 7); } },
+    dibujar(c, t, now) {
+      c.fillStyle = '#05130a'; c.fillRect(0, 0, AW, AH);
+      c.font = '13px "JetBrains Mono", monospace'; c.textAlign = 'left'; c.textBaseline = 'middle';
+      for (let i = 0; i < 26; i++) { c.fillStyle = `rgba(57,255,136,${.05 + ((i * 7 + Math.floor(now / 120)) % 5) * .012})`; c.fillText('0101 1100 ' + ((i * 4093 + Math.floor(now / 200)) % 99999), 20 + (i % 3) * 330, 20 + Math.floor(i / 3) * 56); }
+      etiqueta(c, 'root@servidor:~$ intrusion en curso', 30, 30, { size: 16, color: '#39ff88', align: 'left', borde: 'transparent', fuente: '"JetBrains Mono", monospace' });
+      const ps = Arena.orden(), len = Arena.P.texto.length;
+      ps.forEach((p, i) => {
+        const y = 80 + i * 62, v = this.vis[p.id] || 0;
+        rr(c, 40, y, 920, 48, 8); c.fillStyle = p.yo ? 'rgba(57,255,136,.14)' : 'rgba(255,255,255,.05)'; c.fill(); c.strokeStyle = 'rgba(57,255,136,.4)'; c.lineWidth = 1; c.stroke();
+        c.fillStyle = p.color; c.beginPath(); c.arc(64, y + 24, 8, 0, 7); c.fill();
+        c.font = '700 16px "JetBrains Mono", monospace'; c.fillStyle = '#b8ffd6'; c.textAlign = 'left'; c.fillText((p.nombre || '').slice(0, 14), 84, y + 17);
+        c.font = '12px "JetBrains Mono", monospace'; c.fillStyle = 'rgba(184,255,214,.6)'; c.fillText(p.fin > 0 ? 'ACCESO CONCEDIDO' : p.chars > 0 ? 'inyectando ' + Math.round(100 * p.chars / len) + '%' : 'esperando', 84, y + 35);
+        rr(c, 300, y + 15, 600, 18, 9); c.fillStyle = 'rgba(0,0,0,.5)'; c.fill(); c.fillStyle = p.fin > 0 ? '#ffd166' : '#39ff88'; rr(c, 300, y + 15, Math.max(10, 600 * v), 18, 9); c.fill();
+        if (p.fin > 0) etiqueta(c, '#' + (Arena.lugaresMap[p.id] || ''), 930, y + 24, { size: 18, color: '#ffd166', borde: 'transparent' });
+      });
+    },
+    hud() { return ['Lugar', `${Arena.lugarActual()}/${Arena.parts.length}`]; },
+    puntosFinales(yo, lugar) { return puntaje(Arena.miPpm(), Arena.miPrec()) + ([150, 100, 60, 30][lugar - 1] || 10); }
+  };
+
+  /* 3. Duelo de Memes (todos contra todos, por likes) */
+  ARENA.memes = {
+    nombre: 'Duelo de Memes', tipo: 'texto', dur: 60, largo: 1600, etiqueta: 'Todos contra todos', col: '#ffb347',
+    desc: 'Cada letra que tecleas es un like. Gana el meme mas viral del chat en 60 segundos.',
+    como: 'Escribe sin parar los epigrafes de memes. Cada letra suma likes; quien tenga mas al final se lleva el trending.',
+    textoPropio(r, largo) { return textoUnion(MEMES, r, largo, '. '); },
+    iniciar() { this.likes = {}; this.prev = {}; },
+    actualizar(dt, t, now) {
+      const ps = Arena.parts; ps.forEach((p, i) => {
+        const l = this.likes[p.id] || 0, o = p.chars * 3; this.likes[p.id] = l + (o - l) * Math.min(1, dt * 8);
+        if (p.chars > (this.prev[p.id] || 0) && Math.random() < .35) { const col = Math.floor(i % 2), row = Math.floor(i / 2); FX.chispas(130 + col * 440, 140 + row * 120, { n: 2, colores: ['#ff6b81', '#ff9fb2'], forma: 'r', vel: 90, vida: .8, grav: -90, tam: 4 }); }
+        this.prev[p.id] = p.chars;
+      });
+    },
+    lider() { const o = Arena.parts.slice().sort((a, b) => b.chars - a.chars); return o[0]; },
+    dibujar(c, t, now) {
+      c.fillStyle = '#fff7ec'; c.fillRect(0, 0, AW, AH); c.fillStyle = '#ffb347'; c.fillRect(0, 0, AW, 54); etiqueta(c, 'MemeBook - Trending', 30, 28, { size: 22, align: 'left', borde: '#a86a1f' });
+      const lid = this.lider();
+      Arena.parts.slice(0, 8).forEach((p, i) => {
+        const col = i % 2, row = Math.floor(i / 2), x = 30 + col * 480, y = 76 + row * 108, viral = lid && lid.id === p.id && p.chars > 0;
+        rr(c, x, y, 460, 96, 14); c.fillStyle = '#fff'; c.fill(); c.lineWidth = viral ? 4 : 1.5; c.strokeStyle = viral ? '#ff6b81' : '#e6d5bd'; c.stroke();
+        c.fillStyle = p.color; c.beginPath(); c.arc(x + 44, y + 48, 26, 0, 7); c.fill(); etiqueta(c, (p.nombre || '?')[0].toUpperCase(), x + 44, y + 49, { size: 24, borde: 'transparent' });
+        c.textAlign = 'left'; c.textBaseline = 'middle'; c.font = '700 18px "Atkinson Hyperlegible", sans-serif'; c.fillStyle = '#2b2d33'; c.fillText((p.nombre || '').slice(0, 18) + (p.bot ? ' (bot)' : p.yo ? ' (tu)' : ''), x + 86, y + 30);
+        c.font = '700 26px "JetBrains Mono", monospace'; c.fillStyle = '#e63950'; c.fillText('♥ ' + Math.round(this.likes[p.id] || 0), x + 86, y + 66);
+        if (viral) { rr(c, x + 340, y + 12, 100, 28, 14); c.fillStyle = '#ff6b81'; c.fill(); etiqueta(c, 'VIRAL', x + 390, y + 27, { size: 14, borde: 'transparent' }); }
+      });
+    },
+    hud() { const yo = Arena.parts.find(p => p.yo); return ['Likes', String(yo ? yo.chars * 3 : 0)]; },
+    orden(ps) { return ps.slice().sort((a, b) => b.chars - a.chars); },
+    valor(p) { return `${p.chars * 3} likes`; },
+    titulo() { const l = this.lider(); return l && l.yo ? '¡Tu meme es tendencia!' : 'Otro meme fue mas viral'; },
+    gane() { const l = this.lider(); return !!(l && l.yo); },
+    puntosFinales(yo) { return yo.chars * 2 + (this.gane() ? 150 : 0); },
+    puntosBot(ch) { return ch * 2; }
+  };
+  ARENA_ORDEN.push('bossanime', 'terminal', 'memes');
+}
+
+
+/* ---------- Dificultad (facil / medio / dificil) y musica ---------- */
+const DIF_OPC = [['facil', 'Fácil'], ['medio', 'Medio'], ['dificil', 'Difícil']];
+const DIF_K = { facil: .75, medio: 1, dificil: 1.35 };
+const leerLS = (k, v) => { try { const x = localStorage.getItem(k); return x === null ? v : x; } catch (e) { return v; } };
+const guardarLS = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+Arena.dif = DIF_K[leerLS('teclazo_dif', 'medio')] ? leerLS('teclazo_dif', 'medio') : 'medio';
+Arena.kDif = function () { const c = this.cfgSala; return DIF_K[(c && c.dif) || this.dif] || 1; };
+/* los juegos de puntería corren a mayor o menor velocidad: todo el ritmo (aparición y movimiento) escala igual para todos */
+for (const id of ARENA_ORDEN) {
+  const m = ARENA[id];
+  if (m && m.tipo === 'blancos' && typeof m.actualizar === 'function') {
+    const o = m.actualizar;
+    m.actualizar = function (dt, t, now) { const k = Arena.kDif(); return o.call(this, dt * k, t * k, now); };
+  }
+}
+/* controles en la cabecera de Arena */
+{
+  const cab = $('#vArena .arena-cab');
+  const caja = nodo('div', 'a-ajustes');
+  const lab = nodo('label', '', 'Dificultad'); lab.setAttribute('for', 'aDif');
+  const s = nodo('select'); s.id = 'aDif';
+  for (const [v, n] of DIF_OPC) { const o = nodo('option', '', n); o.value = v; s.append(o); }
+  s.value = Arena.dif;
+  s.addEventListener('change', () => { Arena.dif = s.value; guardarLS('teclazo_dif', s.value); });
+  const bm = nodo('button', 'btn sec chico', ''); bm.type = 'button'; bm.id = 'btnMusica';
+  const pintaM = () => { bm.textContent = Musica.on ? 'Música: sí' : 'Música: no'; };
+  bm.addEventListener('click', () => { Musica.on = !Musica.on; guardarLS('teclazo_musica', Musica.on ? '1' : '0'); pintaM(); });
+  caja.append(lab, s, bm);
+  cab.append(caja);
+  window.__pintaMusica = pintaM;
+}
+/* musica: arpegio sencillo mientras hay una partida en juego */
+const Musica = {
+  on: leerLS('teclazo_musica', '1') === '1', paso: 0,
+  notas: [262, 330, 392, 330, 294, 370, 440, 370, 262, 330, 392, 523, 349, 440, 523, 440],
+  tic() {
+    if (!this.on || typeof Arena === 'undefined' || Arena.estado !== 'juego' || document.hidden) return;
+    const f = this.notas[this.paso++ % this.notas.length];
+    tono(f, .22, 'triangle', .022);
+    if (this.paso % 4 === 1) tono(f / 2, .3, 'sine', .03);
+  }
+};
+setInterval(() => Musica.tic(), 260);
+window.__pintaMusica();
+
+
+/* ---------- PERFIL 2: avatar, titulos, logros, estadisticas, temas y codigo de perfil ---------- */
+const AVATARES = ['😀', '😎', '🤖', '👾', '🦊', '🐱', '🐼', '🦄', '🔥', '⚡', '🎮', '🧠', '🐉', '🥷', '🧙', '👻'];
+const TEMAS = [
+  { id: 'clasico', n: 'Clásico' },
+  { id: 'oceano', n: 'Océano', c: { menta: '#1d6fa5', rosa: '#c2557a', oro: '#9a6a0e' }, o: { menta: '#7cc4f5', rosa: '#f39cac', oro: '#e9c46a' } },
+  { id: 'atardecer', n: 'Atardecer', c: { menta: '#c2561b', rosa: '#a8326a', oro: '#8a5a00' }, o: { menta: '#ffa066', rosa: '#ff8fb1', oro: '#ffd166' } },
+  { id: 'bosque', n: 'Bosque', c: { menta: '#2f7d32', rosa: '#a8483f', oro: '#7a6a10' }, o: { menta: '#8fd694', rosa: '#e8a09a', oro: '#e0cb6a' } },
+  { id: 'neon', n: 'Neón', c: { menta: '#7a2fd0', rosa: '#d01f8a', oro: '#8a5a00' }, o: { menta: '#b78cff', rosa: '#ff7ad0', oro: '#fff06a' } }
+];
+const LOGROS = [
+  ['primera', 'Primer paso', 'Juega tu primera partida', 'Aprendiz', p => p.partidas >= 1],
+  ['diez', 'Constante', 'Juega 10 partidas', 'Dedos de acero', p => p.partidas >= 10],
+  ['cincuenta', 'Veterano', 'Juega 50 partidas', 'Sensei del teclado', p => p.partidas >= 50],
+  ['ppm30', 'Calentando motores', 'Llega a 30 PPM', 'Tortuga con turbo', p => p.mejorPpm >= 30],
+  ['ppm60', 'Veloz', 'Llega a 60 PPM', 'Rayo tecleador', p => p.mejorPpm >= 60],
+  ['ppm90', 'Turbo', 'Llega a 90 PPM', 'Dios del teclado', p => p.mejorPpm >= 90],
+  ['xp1k', 'Mil puntos', 'Suma 1000 de experiencia', 'Cazapuntos', p => p.xp >= 1000],
+  ['xp10k', 'Leyenda', 'Suma 10000 de experiencia', 'Leyenda viva', p => p.xp >= 10000],
+  ['bug', 'Mata-bugs', '300 puntos en Compilador enojado', 'Mata-bugs', p => (p.mejores.compilador || 0) >= 300],
+  ['so', 'Moderador temido', '300 puntos en Stack Overflow Panic', 'Moderador temido', p => (p.mejores.stackoverflow || 0) >= 300],
+  ['teams', 'Cámara apagada', 'Juega Reunión de Teams', 'Rey de las excusas', p => (p.mejores.teams || 0) > 0],
+  ['bsod', 'Pantallazo evitado', 'Juega Blue Screen Runner', 'Corredor azul', p => (p.mejores.bluescreen || 0) > 0],
+  ['trivia', 'Cerebro de wiki', 'Juega las 3 trivias', 'Cerebro de wiki', p => ['quienquien', 'spoiler', 'soquiz'].every(k => (p.mejores[k] || 0) > 0)],
+  ['boss', 'Sensei del anime', 'Juega Boss de Anime', 'Sensei del anime', p => (p.mejores.bossanime || 0) > 0],
+  ['hack', 'Hacker de oficina', 'Juega Terminal Hacker', 'Hacker de oficina', p => (p.mejores.terminal || 0) > 0],
+  ['meme', 'Meme lord', 'Juega Duelo de Memes', 'Meme lord', p => (p.mejores.memes || 0) > 0],
+  ['fiesta1', 'Fiestero', 'Termina una fiesta', 'Alma de la fiesta', p => p.fj >= 1],
+  ['fiesta5', 'Anfitrión', 'Termina 5 fiestas', 'Anfitrión eterno', p => p.fj >= 5],
+  ['fiestaw', 'Rey de la fiesta', 'Gana una fiesta', 'Rey de la fiesta', p => p.fg >= 1]
+];
+const TITULOS_LOGRO = LOGROS.map(l => l[3]);
+{
+  const defecto0 = Store.defecto, limpio0 = Store.limpio;
+  const extras = (o, d) => {
+    d = d && typeof d === 'object' ? d : {};
+    o.avatar = AVATARES.includes(d.avatar) ? d.avatar : '';
+    o.tema = TEMAS.some(t => t.id === d.tema) ? d.tema : 'clasico';
+    o.fj = clamp(Math.round(num(d.fj)), 0, 99999); o.fg = clamp(Math.round(num(d.fg)), 0, 99999);
+    o.logros = {}; if (d.logros && typeof d.logros === 'object') for (const l of LOGROS) if (num(d.logros[l[0]]) > 0) o.logros[l[0]] = Math.round(num(d.logros[l[0]]));
+    o.titulo = typeof d.titulo === 'string' && LOGROS.some(l => l[3] === d.titulo && o.logros[l[0]]) ? d.titulo : '';
+    return o;
+  };
+  Store.defecto = function () { return extras(defecto0.call(this), {}); };
+  Store.limpio = function (d) { return extras(limpio0.call(this, d), d); };
+  if (Store.perfil) extras(Store.perfil, Store.perfil);
+}
+const Perfil2 = {
+  aplicarTema() {
+    const t = TEMAS.find(x => x.id === Store.perfil.tema) || TEMAS[0], r = document.documentElement.style, claves = ['--menta', '--rosa', '--oro', '--menta-suave', '--rosa-suave'];
+    if (!t.c) { for (const k of claves) r.removeProperty(k); return; }
+    const c = esOscuro() ? t.o : t.c;
+    r.setProperty('--menta', c.menta); r.setProperty('--rosa', c.rosa); r.setProperty('--oro', c.oro);
+    r.setProperty('--menta-suave', `color-mix(in srgb, ${c.menta} 25%, var(--tecla))`); r.setProperty('--rosa-suave', `color-mix(in srgb, ${c.rosa} 25%, var(--tecla))`);
+  },
+  aviso(t) {
+    let a = $('#pAviso'); if (!a) { a = nodo('div', 'p-aviso'); a.id = 'pAviso'; a.setAttribute('role', 'status'); document.body.append(a); }
+    const d = nodo('div', 'p-aviso-i', t); a.append(d); setTimeout(() => d.remove(), 4800);
+  },
+  revisar(silencio) {
+    const p = Store.perfil; if (!p) return; let nuevo = 0;
+    for (const l of LOGROS) { if (!p.logros[l[0]] && l[4](p)) { p.logros[l[0]] = Date.now(); nuevo++; if (!silencio) { this.aviso(`Logro: ${l[1]}. Título nuevo: ${l[3]}`); try { SFX.moneda(); } catch (e) {} } } }
+    if (nuevo) { Store.guardar(); this.pintarLogros(); }
+  },
+  codigo() {
+    const p = Store.perfil, o = JSON.parse(JSON.stringify(p)); const j = JSON.stringify(o);
+    return 'TCLZ1.' + hashStr(j).toString(36) + '.' + btoa(unescape(encodeURIComponent(j)));
+  },
+  importar(c) {
+    c = String(c || '').trim(); const m = c.match(/^TCLZ1\.([a-z0-9]+)\.([A-Za-z0-9+/=]+)$/); if (!m) return 'El código no es válido.';
+    let j; try { j = decodeURIComponent(escape(atob(m[2]))); } catch (e) { return 'El código está dañado.'; }
+    if (hashStr(j).toString(36) !== m[1]) return 'El código está incompleto o cambió.';
+    let d; try { d = JSON.parse(j); } catch (e) { return 'El código está dañado.'; }
+    const nuevo = Store.limpio(d); if (!nuevo.alias) nuevo.alias = Store.perfil.alias;
+    Store.perfil = nuevo; Store.guardar(); UI.jugador(); Honor.render(); Net.presencia(); this.aplicarTema(); this.revisar(true); return '';
+  },
+  pintarLogros() {
+    const caja = $('#pLogros'); if (!caja) return; const p = Store.perfil; caja.replaceChildren();
+    const n = LOGROS.filter(l => p.logros[l[0]]).length;
+    caja.append(nodo('p', 'nota', `Logros: ${n} de ${LOGROS.length}`));
+    const ul = nodo('ul', 'p-logros');
+    for (const l of LOGROS) { const ok = !!p.logros[l[0]], li = nodo('li', ok ? 'ok' : ''); li.append(nodo('b', '', (ok ? '✔ ' : '🔒 ') + l[1]), nodo('span', '', ' · ' + l[2] + (ok ? ' · título: ' + l[3] : ''))); ul.append(li); }
+    caja.append(ul);
+    const est = nodo('ul', 'p-stats'), nv = nivel(p.xp);
+    for (const [k, v] of [['Nivel', `${nv.n} · ${nv.titulo}`], ['Partidas', p.partidas], ['Récord de PPM', p.mejorPpm], ['XP total', p.xp], ['Fiestas jugadas', p.fj], ['Fiestas ganadas', p.fg]]) { const li = nodo('li'); li.append(nodo('span', '', k), nodo('b', '', String(v))); est.append(li); }
+    caja.append(est);
+    const mj = Object.entries(p.mejores).filter(([id]) => nombreJuego(id)).sort((a, b) => b[1] - a[1]).slice(0, 6);
+    if (mj.length) { const ul2 = nodo('ul', 'p-stats'); for (const [id, v] of mj) { const li = nodo('li'); li.append(nodo('span', '', nombreJuego(id)), nodo('b', '', String(v))); ul2.append(li); } caja.append(nodo('p', 'nota', 'Tus mejores marcas'), ul2); }
+  },
+  armarDialogo() {
+    const form = $('#formPerfil'), pie = form.querySelector('.res-botones'), p = Store.perfil;
+    const bloque = nodo('div', 'p-extra'); bloque.id = 'pExtra';
+    const av = nodo('fieldset'); av.append(nodo('legend', '', 'Tu avatar')); const rej = nodo('div', 'p-avatares'); rej.id = 'pAvatares';
+    for (const e of [''].concat(AVATARES)) { const lab = nodo('label'), i = document.createElement('input'); i.type = 'radio'; i.name = 'avatar'; i.value = e; i.setAttribute('aria-label', e || 'Inicial de tu nombre'); const s = nodo('span', '', e || 'Aa'); lab.append(i, s); rej.append(lab); }
+    av.append(rej);
+    const tl = nodo('label', '', 'Tu título (se desbloquea con logros)'); tl.setAttribute('for', 'pTitulo'); const st = nodo('select'); st.id = 'pTitulo';
+    const tm = nodo('label', '', 'Tema visual'); tm.setAttribute('for', 'pTema'); const sm = nodo('select'); sm.id = 'pTema'; for (const t of TEMAS) { const o = nodo('option', '', t.n); o.value = t.id; sm.append(o); }
+    const det = nodo('details', 'p-det'); det.append(nodo('summary', '', 'Logros y estadísticas')); const lg = nodo('div'); lg.id = 'pLogros'; det.append(lg);
+    const cod = nodo('details', 'p-det'); cod.append(nodo('summary', '', 'Código de perfil (llévalo a otro dispositivo)'));
+    const cc = nodo('div', 'p-cod'); const ta = nodo('textarea'); ta.id = 'pCodigo'; ta.rows = 3; ta.setAttribute('aria-label', 'Código de perfil'); ta.spellcheck = false;
+    const b1 = nodo('button', 'btn sec chico', 'Mostrar mi código'); b1.type = 'button'; const b2 = nodo('button', 'btn sec chico', 'Importar este código'); b2.type = 'button'; const msg = nodo('p', 'nota'); msg.id = 'pMsg'; msg.setAttribute('role', 'status');
+    b1.addEventListener('click', () => { ta.value = this.codigo(); ta.select(); msg.textContent = 'Copia este código y pégalo en el otro dispositivo, en la misma opción.'; });
+    let pend = false; b2.addEventListener('click', () => {
+      if (!pend) { pend = true; b2.textContent = 'Confirmar: reemplazará mi perfil'; msg.textContent = 'Esto reemplaza tu avance de este dispositivo.'; setTimeout(() => { pend = false; b2.textContent = 'Importar este código'; }, 6000); return; }
+      pend = false; b2.textContent = 'Importar este código'; const r = this.importar(ta.value); msg.textContent = r || 'Perfil importado. Cierra y vuelve a abrir esta ventana para ver todo.';
+    });
+    cc.append(ta, b1, b2, msg); cod.append(cc);
+    bloque.append(av, tl, st, tm, sm, det, cod); form.insertBefore(bloque, pie);
+    $('#formPerfil').addEventListener('submit', () => {
+      const q = Store.perfil, a = form.querySelector('input[name="avatar"]:checked'); q.avatar = a ? a.value : q.avatar; q.titulo = st.value; q.tema = sm.value;
+      Store.guardar(); this.aplicarTema(); UI.jugador(); Net.presencia(); Fiesta.sincPerfil();
+    });
+  },
+  abrir() {
+    const p = Store.perfil; this.aplicarTema();
+    const r = $('#pAvatares'); for (const i of r.querySelectorAll('input')) i.checked = i.value === (p.avatar || '');
+    const st = $('#pTitulo'); st.replaceChildren(); const o0 = nodo('option', '', 'Sin título'); o0.value = ''; st.append(o0);
+    for (const l of LOGROS) if (p.logros[l[0]]) { const o = nodo('option', '', l[3]); o.value = l[3]; st.append(o); } st.value = p.titulo || '';
+    $('#pTema').value = p.tema; $('#pCodigo').value = ''; $('#pMsg').textContent = ''; this.pintarLogros();
+  }
+};
+Perfil2.armarDialogo();
+$('#btnPerfil').addEventListener('click', () => Perfil2.abrir());
+{
+  const j0 = UI.jugador; UI.jugador = function () { j0.call(this); const p = Store.perfil, a = $('#jAvatar'); Perfil2.aplicarTema(); if (p.avatar) a.textContent = p.avatar; const n = $('#jNivel'); if (p.titulo) n.textContent += ' · ' + p.titulo; };
+  new MutationObserver(() => Perfil2.aplicarTema()).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => Perfil2.aplicarTema());
+}
+Object.assign(Fiesta, {
+  sincPerfil() { if (!this.sala || this.local) return; const p = Store.perfil; this.pub({ av: p.avatar || '', ti: p.titulo || '' }); }
+});
+{
+  const alC = Fiesta.alCambiar, pod = Fiesta.mostrarPodio;
+  Fiesta.alCambiar = function () { alC.call(this); const p = Store.perfil, k = (p.avatar || '') + '|' + (p.titulo || ''); if (this.sala && !this.local && k !== this.kPerfil) { this.kPerfil = k; this.sincPerfil(); } };
+  Fiesta.mostrarPodio = function (e) { const yo = this.miLabel(), p = Store.perfil; p.fj++; if (e.tabla && e.tabla[0] && e.tabla[0][0] === yo && e.tabla.length > 1) p.fg++; Store.guardar(); Perfil2.revisar(false); return pod.call(this, e); };
+}
+if (Store.perfil) { UI.jugador(); Perfil2.revisar(true); } setInterval(() => Perfil2.revisar(false), 5000);
 
 const hot = window.claude && window.claude.hot;
 if (hot && hot.snapshot) hot.snapshot(() => ({ sala: Duelo.codigo || $('#inSala').value || '' }));
